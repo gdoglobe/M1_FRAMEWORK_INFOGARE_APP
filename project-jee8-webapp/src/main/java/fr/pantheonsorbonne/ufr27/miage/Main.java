@@ -48,14 +48,18 @@ import fr.pantheonsorbonne.ufr27.miage.jpa.Customer;
  */
 public class Main {
 
+	
+	
+	
+	
 	public static final String BASE_URI = "http://localhost:8080/";
 
 	public static HttpServer startServer() {
 
 		final ResourceConfig rc = new ResourceConfig()//
 				.packages(true, "fr.pantheonsorbonne.ufr27.miage")//
-				.register(DeclarativeLinkingFeature.class)//
-				.register(JMSProducer.class).register(ExceptionMapper.class).register(PersistenceConf.class)
+				  .register(DeclarativeLinkingFeature.class)//
+				.register(JMSProducer.class).register(ExceptionMapper.class).register(PersistenceConf.class)//
 				.register(new AbstractBinder() {
 
 					@Override
@@ -91,6 +95,7 @@ public class Main {
 	 * @param args
 	 * @throws IOException
 	 */
+
 	public static void main(String[] args) throws IOException {
 
 		Locale.setDefault(Locale.ENGLISH);

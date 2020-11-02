@@ -1,0 +1,11 @@
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\Address.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\Gare.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\FreeTrialPlan.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\User.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\ObjectFactory.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\TrainInfo.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\InfoCentre.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\InfoGare.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\PerturbationTrain.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\Ccinfo.class
+fr\pantheonsorbonne\ufr27\miage\model\jaxb\Train.class
