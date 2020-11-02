@@ -11,19 +11,19 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Train {
 	@XmlElement
 	private String id;
-	//@XmlElement
+	@XmlElement
     private Departure departure;
-	//@XmlElement
+	@XmlElement
     private Arrival arrival;
 	
     //maybe LinkedList for rank insersion // or tree set to have sorted stop point
 	//@XmlElement
     private List<Arrival> stopPoints;
-	@XmlElement
+	//@XmlElement
     private String location;
     
     public Train() {
@@ -56,7 +56,7 @@ public class Train {
 	}
 
 	public Arrival getArrival() {
-		this.arrival.setRank(Long.valueOf(stopPoints.size()));
+		//this.arrival.setRank(Long.valueOf(stopPoints.size()));
 		return arrival;
 	}
 

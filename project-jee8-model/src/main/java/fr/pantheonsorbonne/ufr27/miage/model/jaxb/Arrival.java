@@ -5,27 +5,31 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-//@XmlRootElement
+@XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class Arrival implements Comparable<Arrival> {
-		//@XmlElement
+		@XmlElement
 		private Long id;
+		@XmlElement
 		private String name;
-		//@XmlElement
+		@XmlElement
 		private Long rank;
-		//@XmlElement
+		@XmlElement
 		private String location;
-		//@XmlElement
+		@XmlElement
 		private String dateTime;
+		public Arrival() {
+			// TODO Auto-generated constructor stub
+		}
 		public Arrival(String name, Long rank, String location, String dateTime) {
 			this.name = name;
 			this.rank = rank;
 			this.location = location;
 			this.dateTime = dateTime;
 		}
-		public void setRank(Long rank) {
-			this.rank = rank;
-		}
+		//public void setRank(Long rank) {
+			//this.rank = rank;
+		//}
 		@Override
 		public int compareTo(Arrival arrivale) {
 			// TODO Auto-generated method stub

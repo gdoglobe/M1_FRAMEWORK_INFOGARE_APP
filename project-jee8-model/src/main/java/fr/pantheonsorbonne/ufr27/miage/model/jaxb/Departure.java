@@ -5,17 +5,21 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-//@XmlRootElement
+@XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class Departure {
-	//@XmlElement
+	@XmlElement
 	private Long id;
-	//@XmlElement
+	@XmlElement
 	private String name;
-	//@XmlElement
+	@XmlElement
 	private String location;
-	//@XmlElement
+	@XmlElement
 	private String dateTime;
+	
+	public Departure() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Departure(String name, String location, String dateTime) {
 		this.name = name;

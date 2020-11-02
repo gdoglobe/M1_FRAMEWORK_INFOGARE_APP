@@ -17,11 +17,12 @@ import javax.xml.bind.annotation.XmlElement;
 public class InfoCentre {
 	
 	private String id;
+	
 	HashMap<String, Train> trains;
 	
-	@XmlElement
-	private List<Gare> garesList;
 	
+	private List<Gare> garesList;
+	@XmlElement
 	HashMap<String, Gare> gares;
 	public InfoCentre() {
 		// TODO Auto-generated constructor stub
