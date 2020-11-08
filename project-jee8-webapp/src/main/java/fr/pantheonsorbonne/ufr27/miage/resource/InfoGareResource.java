@@ -1,6 +1,9 @@
 package fr.pantheonsorbonne.ufr27.miage.resource;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,8 +15,11 @@ import javax.ws.rs.core.Response;
 
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Arrival;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Departure;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ITrain;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.InfoCentre;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Train;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Location;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainReservation;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainTypeReservation;
 
 
 
@@ -40,20 +46,22 @@ public class InfoGareResource {
 		
 		
 		List<Arrival> stopPoints = new ArrayList<Arrival>();
-		stopPoints.add(new Arrival("Tours", Long.valueOf(0), "lat:3, lon:4", "23/12/2020 14h:20min:20s"));
-		stopPoints.add(new Arrival("Limoges", Long.valueOf(1), "lat:3, lon:4", "23/12/2020 14h:20min:20s"));
+		stopPoints.add(new Arrival("Tours", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
+		stopPoints.add(new Arrival("Limoges", Long.valueOf(1), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
 	    infoCentre = new InfoCentre();
+	    
+	    
 	  
-		//infoCentre.addTrain(new Train("TGV1", "Paris", "Bordeaux", "lat:1, lon:2", "23/12/2020 12h:30min:20s", "23/12/2020 14h:20min:20s"));
 		
-		infoCentre.addDeparture(new Train("TGV1", new Departure("Paris", "lat:1, lon:2" , "23/12/2020 12h:30min:20s"), new Arrival("Bordeaux", Long.valueOf(0), "lat:3, lon:4", "23/12/2020 14h:20min:20s"), "lat:3, lon:4", stopPoints));
+		infoCentre.addDeparture(new TrainReservation("TGV1",TrainTypeReservation.TVG, new Departure("Paris", new Location("11331111", "11111111") , new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Bordeaux", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
 		
-		infoCentre.addDeparture(new Train("TGV2", new Departure("Rouen", "lat:1, lon:2" , "24/12/2020 12h:30min:20s"), new Arrival("Bordeaux", Long.valueOf(0), "lat:3, lon:4", "24/12/2020 14h:20min:20s"), "lat:3, lon:4", stopPoints));
+		infoCentre.addDeparture(new TrainReservation("TGV2",TrainTypeReservation.TVG, new Departure("Rouen", new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Bordeaux", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
 		
-		infoCentre.addDeparture(new Train("TGV3", new Departure("Bordeaux", "lat:1, lon:2" , "25/12/2020 12h:30min:20s"), new Arrival("Rouen", Long.valueOf(0), "lat:3, lon:4", "25/12/2020 14h:20min:20s"), "lat:3, lon:4", stopPoints));
+		infoCentre.addDeparture(new TrainReservation("TGV3",TrainTypeReservation.TVG, new Departure("Bordeaux", new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Rouen", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
 		
-		infoCentre.addDeparture(new Train("TGV4", new Departure("Paris", "lat:1, lon:2" , "26/12/2020 12h:30min:20s"), new Arrival("Rouen", Long.valueOf(0), "lat:3, lon:4", "26/12/2020 14h:20min:20s"), "lat:3, lon:4", stopPoints));
+		infoCentre.addDeparture(new TrainReservation("TGV4",TrainTypeReservation.TVG, new Departure("Paris", new Location("1111111", "11111111") , new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Rouen", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
 		
+	    
 		System.out.println(infoCentre.getGaresToString());
 		return Response.ok(infoCentre).build();
 	   // return Response.status(Status.OK).entity(map).build();

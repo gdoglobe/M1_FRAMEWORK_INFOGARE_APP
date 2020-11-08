@@ -18,15 +18,15 @@ public class InfoCentre {
 	
 	private String id;
 	
-	HashMap<String, Train> trains;
-	
-	
-	private List<Gare> garesList;
+	HashMap<String, ITrain> trains;
 	@XmlElement
+	private List<Gare> garesList;
+	
+	//@XmlElement
 	HashMap<String, Gare> gares;
 	public InfoCentre() {
 		// TODO Auto-generated constructor stub
-		trains = new HashMap<String, Train>();
+		trains = new HashMap<String, ITrain>();
 		gares = new HashMap<String, Gare>();
 		//use index as key for set ins list
 		garesList = new ArrayList<Gare>();
@@ -52,42 +52,37 @@ public class InfoCentre {
 		//System.out.println(sb.toString());
 		return sb.toString();
 	}
-	public void addTrain(Train t) {
+	public void addTrain(TrainReservation t) {
 		//t.getDeparture();
 		trains.put(t.getId(), t);
 	}
 	
-	public HashMap<String, Train> getTrains() {
+	public HashMap<String, ITrain> getTrains() {
 		return trains;
 	}
-	public double calculerTrainVariationDepart(Train t)
+	public double calculerTrainVariationDepart(ITrain t)
 	{
 		return 0;	
 	}
-	public double calculerTrainVariationArrive(Train t)
+	public double calculerTrainVariationArrive(ITrain t)
 	{
 		return 0;
 	}
 	
-	public void addDeparture(Train t)
+	public void addDeparture(ITrain t)
 	{
 		
 		Gare g = new Gare();
 		
 		if(gares.get(t.getDeparture().getName()) != null )
 		{
-			
 			g = gares.get(t.getDeparture().getName());
-			
 			g.addDepartureTrain(t);
-			//(t.getId(), t.getArrival(), new TraiSystem.out.println("   InfoCentr 4");
 			gares.replace(t.getDeparture().getName(), g);
-			
 		}
 		else
 		{
 			g.setId(t.getDeparture().getName());
-			//g.addTrainDeparture(t.getId(), t.getArrival(), new TrainInfo(t.getLocation(),t.getDepartureTime(),t.getAvrrivalTime(),"300s"));
 			g.addDepartureTrain(t);			
 			gares.putIfAbsent(t.getDeparture().getName(), g);		
 		}
@@ -100,7 +95,7 @@ public class InfoCentre {
 		}
 		
 	}
-	public void setArrive(Train t)
+	public void setArrive(ITrain t)
 	{}
 	
 

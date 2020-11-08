@@ -5,6 +5,7 @@ fr\pantheonsorbonne\ufr27\miage\ejb\GymService.class
 fr\pantheonsorbonne\ufr27\miage\jpa\Payment.class
 fr\pantheonsorbonne\ufr27\miage\resource\InfoGareResource.class
 fr\pantheonsorbonne\ufr27\miage\jms\conf\ConnectionFactorySupplier.class
+fr\pantheonsorbonne\ufr27\miage\Main$1.class
 fr\pantheonsorbonne\ufr27\miage\jms\utils\BrokerUtils.class
 fr\pantheonsorbonne\ufr27\miage\jms\conf\JMSProducer.class
 fr\pantheonsorbonne\ufr27\miage\jpa\Card.class

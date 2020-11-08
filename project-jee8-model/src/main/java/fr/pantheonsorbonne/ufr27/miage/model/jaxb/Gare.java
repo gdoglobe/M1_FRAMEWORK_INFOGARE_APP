@@ -13,17 +13,17 @@ public class Gare {
 	private String id;
 	// idTrain/ dest/prov TrainInfo
 	@XmlElement
-	private List<Train> departureTrains;
+	private List<ITrain> departureTrains;
 	
 	
 	
-	private List<Train> arrivalTrains;
+	private List<ITrain> arrivalTrains;
 	private List<DisturbanceTrain> disturbanceDepartureTrains;
 	private List<DisturbanceTrain> disturbanceArrivalTrains;
 
 	public Gare() {
-		this.departureTrains = new ArrayList<Train>();
-		this.arrivalTrains = new ArrayList<Train>();
+		this.departureTrains = new ArrayList<ITrain>();
+		this.arrivalTrains = new ArrayList<ITrain>();
 		this.disturbanceDepartureTrains = new ArrayList<DisturbanceTrain>();
 		this.disturbanceArrivalTrains = new ArrayList<DisturbanceTrain>();
 	}
@@ -39,7 +39,7 @@ public class Gare {
 	public String getDepartureToString() {
 
 		StringBuilder sb = new StringBuilder();
-		for (Train train : departureTrains) {
+		for (ITrain train : departureTrains) {
 			sb.append("\t\tTrainId : " + train.getId() + "{\n");
 			sb.append("\t\t"+train.getDeparture().toString());
 			sb.append("\t\t"+train.getArrival().toString());
@@ -52,11 +52,11 @@ public class Gare {
 		return sb.toString();
 	}
 
-	public void addDepartureTrain(Train t) {
+	public void addDepartureTrain(ITrain t) {
 		this.departureTrains.add(t);
 	}
 
-	public void addArrivalTrain(Train t) {
+	public void addArrivalTrain(ITrain t) {
 		arrivalTrains.add(t);
 	}
 

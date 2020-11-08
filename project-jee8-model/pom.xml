@@ -31,9 +31,14 @@
 			<version>2.3.1</version>
 		</dependency>
 
+<!-- can crash -->
+<dependency>
+        <groupId>com.maxmind.geoip2</groupId>
+        <artifactId>geoip2</artifactId>
+        <version>2.15.0</version>
+    </dependency>
 
-
-
+<!-- can crash /-->
 
 
 	</dependencies>
