@@ -115,7 +115,7 @@ public class Main {
 		cust.setFname("Nicolas2");
 		
 		em.persist(cust);
-		em.getTransaction().commit();
+		//em.getTransaction().commit();
 		
 		
 		pc.launchH2WS();

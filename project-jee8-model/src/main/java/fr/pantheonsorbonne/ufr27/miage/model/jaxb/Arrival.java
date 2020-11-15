@@ -14,7 +14,7 @@ public class Arrival implements Comparable<Arrival> {
 		@XmlElement
 		private Long id;
 		@XmlElement
-		private String name;
+		private String trainStationName;
 		@XmlElement
 		private Long rank;
 		@XmlElement
@@ -26,7 +26,7 @@ public class Arrival implements Comparable<Arrival> {
 			// TODO Auto-generated constructor stub
 		}
 		public Arrival(String name, Long rank, Location location, Date dateTime) {
-			this.name = name;
+			this.trainStationName = name;
 			this.rank = rank;
 			this.location = location;
 			this.dateTime = dateTime;
@@ -47,8 +47,8 @@ public class Arrival implements Comparable<Arrival> {
 		public Long getId() {
 			return id;
 		}
-		public String getName() {
-			return name;
+		public String getTrainStationName() {
+			return trainStationName;
 		}
 		public Long getRank() {
 			return rank;
@@ -62,7 +62,7 @@ public class Arrival implements Comparable<Arrival> {
 		@Override
 		public String toString() {
 			// TODO Auto-generated method stub
-			return 	"Arrival : [ rank "+this.getRank()+" , id = "+this.getId()+" , name = "+this.getName()+" , dateTime = "+this.getDateTime()+" ];\n";
+			return 	"Arrival : [ rank "+this.getRank()+" , id = "+this.getId()+" , TrainStationName = "+this.getTrainStationName()+" , dateTime = "+this.getDateTime()+" ];\n";
 
 		}
 		

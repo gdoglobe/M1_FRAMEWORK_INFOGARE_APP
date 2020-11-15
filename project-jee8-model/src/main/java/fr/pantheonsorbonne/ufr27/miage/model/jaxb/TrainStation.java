@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 @XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
-public class Gare {
+public class TrainStation {
 	private String id;
 	// idTrain/ dest/prov TrainInfo
 	@XmlElement
@@ -21,7 +21,7 @@ public class Gare {
 	private List<DisturbanceTrain> disturbanceDepartureTrains;
 	private List<DisturbanceTrain> disturbanceArrivalTrains;
 
-	public Gare() {
+	public TrainStation() {
 		this.departureTrains = new ArrayList<ITrain>();
 		this.arrivalTrains = new ArrayList<ITrain>();
 		this.disturbanceDepartureTrains = new ArrayList<DisturbanceTrain>();

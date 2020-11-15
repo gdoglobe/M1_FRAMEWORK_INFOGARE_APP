@@ -14,7 +14,7 @@ public class Departure {
 	@XmlElement
 	private Long id;
 	@XmlElement
-	private String name;
+	private String trainStationName;
 	@XmlElement
 	private Location location;
 	
@@ -27,15 +27,15 @@ public class Departure {
 	}
 	
 	public Departure(String name, Location location, Date dateTime) {
-		this.name = name;
+		this.trainStationName = name;
 		this.location = location;
 		this.dateTime = dateTime;
 	}
 	public Long getId() {
 		return id;
 	}
-	public String getName() {
-		return name;
+	public String getTrainStationName() {
+		return trainStationName;
 	}
 	public Location getLocation() {
 		return this.location;
@@ -45,6 +45,6 @@ public class Departure {
 	}
 	@Override
 	public String toString() {
-		return 	"Departure : [ id = "+this.getId()+" , name = "+this.getName()+" , dateTime = "+this.getDateTime()+" ];\n";
+		return 	"Departure : [ id = "+this.getId()+" , TrainStationName = "+this.getTrainStationName()+" , dateTime = "+this.getDateTime()+" ];\n";
 	}
 }

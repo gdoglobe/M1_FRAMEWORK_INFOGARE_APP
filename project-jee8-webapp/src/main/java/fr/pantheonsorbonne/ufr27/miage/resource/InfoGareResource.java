@@ -18,7 +18,9 @@ import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Departure;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ITrain;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.InfoCentre;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Location;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainNoReservation;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainReservation;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainTypeNoReservation;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainTypeReservation;
 
 
@@ -52,6 +54,7 @@ public class InfoGareResource {
 	    
 	    
 	  
+	    infoCentre.addDeparture(new TrainNoReservation("TER",TrainTypeNoReservation.RER, new Departure("Rouen", new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Bordeaux", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
 		
 		infoCentre.addDeparture(new TrainReservation("TGV1",TrainTypeReservation.TVG, new Departure("Paris", new Location("11331111", "11111111") , new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Bordeaux", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
 		

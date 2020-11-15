@@ -14,25 +14,26 @@ import javax.xml.bind.annotation.XmlElement;
 
 @XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
+
 public class InfoCentre {
 	
 	private String id;
 	
 	HashMap<String, ITrain> trains;
 	@XmlElement
-	private List<Gare> garesList;
+	private List<TrainStation> trainStationList;
 	
 	//@XmlElement
-	HashMap<String, Gare> gares;
+	HashMap<String, TrainStation> trainStations;
 	public InfoCentre() {
 		// TODO Auto-generated constructor stub
 		trains = new HashMap<String, ITrain>();
-		gares = new HashMap<String, Gare>();
+		trainStations = new HashMap<String, TrainStation>();
 		//use index as key for set ins list
-		garesList = new ArrayList<Gare>();
+		trainStationList = new ArrayList<TrainStation>();
 	}
-	public HashMap<String, Gare> getGares() {
-		return gares;
+	public HashMap<String, TrainStation> getGares() {
+		return trainStations;
 	}
 	public String getGaresToString() {
 		
@@ -40,12 +41,12 @@ public class InfoCentre {
 		
 		sb.append("deparutres[\n");
 		
-		for(Entry<String, Gare> gare : gares.entrySet())
+		for(Entry<String, TrainStation> trainStation : trainStations.entrySet())
 		{
 			
-			sb.append("\t"+gare.getKey()+"{==========================\n");
+			sb.append("\t"+trainStation.getKey()+"{==========================\n");
 			
-			Gare g = gare.getValue();
+			TrainStation g = trainStation.getValue();
 			sb.append(g.getDepartureToString()+"\n\t};\n");
 		}
 		sb.append("]");
@@ -72,26 +73,26 @@ public class InfoCentre {
 	public void addDeparture(ITrain t)
 	{
 		
-		Gare g = new Gare();
+		TrainStation g = new TrainStation();
 		
-		if(gares.get(t.getDeparture().getName()) != null )
+		if(trainStations.get(t.getDeparture().getTrainStationName()) != null )
 		{
-			g = gares.get(t.getDeparture().getName());
+			g = trainStations.get(t.getDeparture().getTrainStationName());
 			g.addDepartureTrain(t);
-			gares.replace(t.getDeparture().getName(), g);
+			trainStations.replace(t.getDeparture().getTrainStationName(), g);
 		}
 		else
 		{
-			g.setId(t.getDeparture().getName());
+			g.setId(t.getDeparture().getTrainStationName());
 			g.addDepartureTrain(t);			
-			gares.putIfAbsent(t.getDeparture().getName(), g);		
+			trainStations.putIfAbsent(t.getDeparture().getTrainStationName(), g);		
 		}
 		
 		//### use index as key for set in list for optimisation
-		garesList = new ArrayList<Gare>();
-		for(Entry<String, Gare> gare : gares.entrySet())
+		trainStationList = new ArrayList<TrainStation>();
+		for(Entry<String, TrainStation> trainStation : trainStations.entrySet())
 		{
-			garesList.add(gare.getValue());
+			trainStationList.add(trainStation.getValue());
 		}
 		
 	}
