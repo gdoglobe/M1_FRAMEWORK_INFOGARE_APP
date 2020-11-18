@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.3.2 
 // Voir <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2020.11.07 à 05:43:47 PM CET 
+// Généré le : 2020.11.14 à 05:19:12 PM CET 
 //
 
 
@@ -58,6 +58,22 @@ public class ObjectFactory {
      */
     public Ccinfo createCcinfo() {
         return new Ccinfo();
+    }
+
+    /**
+     * Create an instance of {@link Invoice }
+     * 
+     */
+    public Invoice createInvoice() {
+        return new Invoice();
+    }
+
+    /**
+     * Create an instance of {@link InvoiceWrapper }
+     * 
+     */
+    public InvoiceWrapper createInvoiceWrapper() {
+        return new InvoiceWrapper();
     }
 
     /**

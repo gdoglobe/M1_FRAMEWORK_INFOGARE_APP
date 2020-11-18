@@ -22,6 +22,7 @@ public class Arrival implements Comparable<Arrival> {
 		@XmlElement
 		@XmlJavaTypeAdapter(DateAdapter.class)
 		private Date dateTime;
+		
 		public Arrival() {
 			// TODO Auto-generated constructor stub
 		}
