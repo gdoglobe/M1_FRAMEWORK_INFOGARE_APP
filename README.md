@@ -28,4 +28,4 @@ This project consumes message produced by project-jee8-webapp to validate paymen
 
 ## external interfaces sequence diagrams
 
-![](sec.png)
+//![](sec.png)
