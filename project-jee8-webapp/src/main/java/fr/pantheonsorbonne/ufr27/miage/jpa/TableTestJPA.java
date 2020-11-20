@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Location;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.LocationDto;
 
 @Entity
 public class TableTestJPA {
@@ -55,6 +55,5 @@ public class TableTestJPA {
 	int streeNumber;
 	String zipCode;
 	String country;
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	Location location;
+	
 }

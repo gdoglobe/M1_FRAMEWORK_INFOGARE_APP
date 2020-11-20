@@ -13,15 +13,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Arrival;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Departure;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ITrain;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.InfoCentre;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Location;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainNoReservation;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainReservation;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainTypeNoReservation;
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainTypeReservation;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalStopPointDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalTerminusDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.DepartureDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ITrainDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.InfoCentreDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.LocationDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainNoReservationDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainReservationDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainTypeNoReservationDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainTypeReservationDto;
 
 
 
@@ -29,7 +30,7 @@ import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainTypeReservation;
 
 @Path("infoCentre")
 public class InfoGareResource {
-	InfoCentre infoCentre;
+	InfoCentreDto infoCentreDto;
 	
 	@GET
 	@Path("/test")
@@ -47,26 +48,26 @@ public class InfoGareResource {
 		//message destinateur
 		
 		
-		List<Arrival> stopPoints = new ArrayList<Arrival>();
-		stopPoints.add(new Arrival("Tours", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
-		stopPoints.add(new Arrival("Limoges", Long.valueOf(1), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
-	    infoCentre = new InfoCentre();
+		List<ArrivalStopPointDto> stopPoints = new ArrayList<ArrivalStopPointDto>();
+		stopPoints.add(new ArrivalStopPointDto("Tours", 0, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
+		stopPoints.add(new ArrivalStopPointDto("Limoges", 1, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
+	    infoCentreDto = new InfoCentreDto();
 	    
 	    
 	  
-	    infoCentre.addDeparture(new TrainNoReservation("TER",TrainTypeNoReservation.RER, new Departure("Rouen", new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Bordeaux", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
+	    infoCentreDto.addDeparture(new TrainNoReservationDto("TER",TrainTypeNoReservationDto.RER, new DepartureDto("Rouen", new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalTerminusDto("Bordeaux", 0, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new LocationDto("1111111", "11111111"), stopPoints));
 		
-		infoCentre.addDeparture(new TrainReservation("TGV1",TrainTypeReservation.TVG, new Departure("Paris", new Location("11331111", "11111111") , new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Bordeaux", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
+		infoCentreDto.addDeparture(new TrainReservationDto("TGV1",TrainTypeReservationDto.TVG, new DepartureDto("Paris", new LocationDto("11331111", "11111111") , new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalTerminusDto("Bordeaux", 0, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new LocationDto("1111111", "11111111"), stopPoints));
 		
-		infoCentre.addDeparture(new TrainReservation("TGV2",TrainTypeReservation.TVG, new Departure("Rouen", new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Bordeaux", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
+		infoCentreDto.addDeparture(new TrainReservationDto("TGV2",TrainTypeReservationDto.TVG, new DepartureDto("Rouen", new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalTerminusDto("Bordeaux", 0, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new LocationDto("1111111", "11111111"), stopPoints));
 		
-		infoCentre.addDeparture(new TrainReservation("TGV3",TrainTypeReservation.TVG, new Departure("Bordeaux", new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Rouen", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
+		infoCentreDto.addDeparture(new TrainReservationDto("TGV3",TrainTypeReservationDto.TVG, new DepartureDto("Bordeaux", new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalTerminusDto("Rouen", 0, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new LocationDto("1111111", "11111111"), stopPoints));
 		
-		infoCentre.addDeparture(new TrainReservation("TGV4",TrainTypeReservation.TVG, new Departure("Paris", new Location("1111111", "11111111") , new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Arrival("Rouen", Long.valueOf(0), new Location("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new Location("1111111", "11111111"), stopPoints));
+		infoCentreDto.addDeparture(new TrainReservationDto("TGV4",TrainTypeReservationDto.TVG, new DepartureDto("Paris", new LocationDto("1111111", "11111111") , new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalTerminusDto("Rouen", 0, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new LocationDto("1111111", "11111111"), stopPoints));
 		
 	    
-		System.out.println(infoCentre.getGaresToString());
-		return Response.ok(infoCentre).build();
+		System.out.println(infoCentreDto.getGaresToString());
+		return Response.ok(infoCentreDto).build();
 	   // return Response.status(Status.OK).entity(map).build();
 	}
 	/*@GET
