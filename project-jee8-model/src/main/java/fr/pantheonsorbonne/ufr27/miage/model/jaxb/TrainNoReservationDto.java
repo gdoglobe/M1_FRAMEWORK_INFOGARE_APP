@@ -12,90 +12,53 @@ public class TrainNoReservationDto extends TrainAbstractImplDto{
 	protected boolean reservation;
    
 	public TrainNoReservationDto() {
-			super.reservation = false;
-    		List<ArrivalStopPointDto> stopPoints = new ArrayList<ArrivalStopPointDto>();
-    		stopPoints.add(new ArrivalStopPointDto("Tours", 0, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
-    		stopPoints.add(new ArrivalStopPointDto("Limoges", 1, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
-    		TrainNoReservationDto t = new TrainNoReservationDto("TGV1", TrainTypeNoReservationDto.TER, new DepartureDto("Paris", new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalTerminusDto("Bordeaux", 0, new LocationDto("1111111", "11111111"), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new LocationDto("1111111", "11111111"), stopPoints);
-    		this.newinstance(t);
+		super.reservation = false;
+		TrainNoReservationDto t = new TrainNoReservationDto("TGV1", "TER", new DepartureDto(Long.valueOf(0),"Paris", new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalDto(Long.valueOf(0),"Bordeaux", new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
+		this.newinstance(t);
     }
     
     private void newinstance (TrainNoReservationDto t)
     {
     	this.id = t.getId();
         this.departureDto = t.getDeparture();
-        this.arrivalTerminusDto = t.getArrival();
-        this.locationDto = t.getLocation();
-        this.stopPoints = t.getStopPoints();
+        this.arrivalDto = t.getArrival();
     }
     
-    public TrainNoReservationDto(String id, TrainTypeNoReservationDto trainTypeNoReservationDto, DepartureDto departureDto, ArrivalTerminusDto arrivalTerminusDto,LocationDto locationDto, List<ArrivalStopPointDto> stopPoints) {
+    public TrainNoReservationDto(String id, String trainTypeNoReservationDto, DepartureDto departureDto, ArrivalDto arrivalDto) {
         this.id = id;
         super.reservation = false;
-        this.trainType = trainTypeNoReservationDto.toString();
+        this.trainType = trainTypeNoReservationDto;
         this.departureDto = departureDto;
-        this.arrivalTerminusDto = arrivalTerminusDto;
-        this.locationDto = locationDto;
-        this.stopPoints = stopPoints;
+        this.arrivalDto = arrivalDto;
     }
 
     public String getId() {
         return id;
     }
-    public LocationDto getLocation() {
-		return this.locationDto;
-	}
-    public void setId(String pId) {
-        this.id = pId;
+    public void setId(String id) {
+        this.id = id;
     }
 
 	public DepartureDto getDeparture() {
 		return departureDto;
 	}
 	
-	public ArrivalTerminusDto getArrival() {
-		this.arrivalTerminusDto.setRank(stopPoints.size());
-		return arrivalTerminusDto;
+	public ArrivalDto getArrival() {
+		return arrivalDto;
 	}
 
-	public List<ArrivalStopPointDto> getStopPoints() {
-		Collections.sort(this.stopPoints);
-		return  this.stopPoints;
-	}
-	
-	
 
-	
-
-    public void addStopPoint(ArrivalStopPointDto stopPoint)
-    {
-    	this.stopPoints.add(stopPoint);
-    }
-
-   
-	public void setLocation(LocationDto locationDto) {
-		this.locationDto = locationDto;
-	}
 	public String getTrainType() {
 		return trainType;
 	}
 	public void setTrainType(String trainType) {
 		this.trainType = trainType;
 	}
-	
-	public double getSpeedKM() {
-		return speedKM;
-	}
+
 	public boolean isReservation() {
 		return super.reservation;
 	}
 	
 	
-    
-	@Override
-	public String getLocationCoordinatesToString() {
-		// TODO Auto-generated method stub
-		return this.locationDto.getCoordinatesToString();
-	}
     
 }

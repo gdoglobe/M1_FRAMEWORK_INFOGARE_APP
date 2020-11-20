@@ -15,7 +15,7 @@ public class TripDto implements Comparable<TripDto>{
 	@XmlElement
 	protected DepartureDto departureDto;
 	@XmlElement
-	protected ArrivalTerminusDto arrivalTerminusDto;
+	protected ArrivalDto arrivalDto;
 	@Override
 	public int compareTo(TripDto tripDto) {
 		return this.rank.compareTo(tripDto.getRank());
@@ -32,7 +32,7 @@ public class TripDto implements Comparable<TripDto>{
 	public DepartureDto getDeparture() {
 		return departureDto;
 	}
-	public ArrivalTerminusDto getArrival() {
-		return arrivalTerminusDto;
+	public ArrivalDto getArrival() {
+		return arrivalDto;
 	}
 }

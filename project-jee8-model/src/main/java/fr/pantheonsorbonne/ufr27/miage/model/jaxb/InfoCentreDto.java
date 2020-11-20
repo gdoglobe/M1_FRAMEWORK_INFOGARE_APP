@@ -18,22 +18,17 @@ import javax.xml.bind.annotation.XmlElement;
 //@XmlAccessorType(XmlAccessType.FIELD)
 
 public class InfoCentreDto {
-	
+	@XmlElement
 	private String id;
-	
-	HashMap<String, ITrainDto> trainDtos;
-	
 	@XmlElement
 	private Set<TrainStationDto> trainStationList;	
 	//@XmlElement
 	//private List<TrainStationDto> trainStationList;
+
 	
-	
-	@XmlElement
 	HashMap<String, TrainStationDto> trainStationDtos;
 	public InfoCentreDto() {
-		// TODO Auto-generated constructor stub
-		trainDtos = new HashMap<String, ITrainDto>();
+		
 		trainStationDtos = new HashMap<String, TrainStationDto>();
 		//use index as key for set ins list
 		
@@ -61,14 +56,8 @@ public class InfoCentreDto {
 		//System.out.println(sb.toString());
 		return sb.toString();
 	}
-	public void addTrain(TrainReservationDto t) {
-		//t.getDeparture();
-		trainDtos.put(t.getId(), t);
-	}
+
 	
-	public HashMap<String, ITrainDto> getTrains() {
-		return trainDtos;
-	}
 	public double calculerTrainVariationDepart(ITrainDto t)
 	{
 		return 0;	
@@ -83,17 +72,17 @@ public class InfoCentreDto {
 		
 		TrainStationDto g = new TrainStationDto();
 		
-		if(trainStationDtos.get(t.getDeparture().getTrainStationName()) != null )
+		if(trainStationDtos.get(t.getDeparture().getStationName()) != null )
 		{
-			g = trainStationDtos.get(t.getDeparture().getTrainStationName());
+			g = trainStationDtos.get(t.getDeparture().getStationName());
 			g.addDepartureTrain(t);
-			trainStationDtos.replace(t.getDeparture().getTrainStationName(), g);
+			trainStationDtos.replace(t.getDeparture().getStationName(), g);
 		}
 		else
 		{
-			g.setId(t.getDeparture().getTrainStationName());
+			g.setId(t.getDeparture().getStationName());
 			g.addDepartureTrain(t);			
-			trainStationDtos.putIfAbsent(t.getDeparture().getTrainStationName(), g);		
+			trainStationDtos.putIfAbsent(t.getDeparture().getStationName(), g);		
 		}
 		
 		//### use index as key for set in list for optimisation

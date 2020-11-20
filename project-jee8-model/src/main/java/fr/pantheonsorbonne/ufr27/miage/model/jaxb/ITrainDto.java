@@ -10,13 +10,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public interface ITrainDto {
 	public String getId();
   
-    public void setId(String pId); 
-    public String getLocationCoordinatesToString();
+    public void setId(String id); 
 	public DepartureDto getDeparture(); 
-	public ArrivalTerminusDto getArrival();
+	public ArrivalDto getArrival();
 
-	public List<ArrivalStopPointDto> getStopPoints();
+	//public List<ArrivalStopPointDto> getStopPoints();
 
-    public void addStopPoint(ArrivalStopPointDto stopPoint);
+    //public void addStopPoint(ArrivalStopPointDto stopPoint);
+	//public String getLocationCoordinatesToString();
     
 }

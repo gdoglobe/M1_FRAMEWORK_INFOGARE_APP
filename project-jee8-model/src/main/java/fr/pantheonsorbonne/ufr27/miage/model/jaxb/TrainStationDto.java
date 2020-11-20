@@ -43,10 +43,6 @@ public class TrainStationDto {
 			sb.append("\t\tTrainId : " + trainDto.getId() + "{\n");
 			sb.append("\t\t"+trainDto.getDeparture().toString());
 			sb.append("\t\t"+trainDto.getArrival().toString());
-			for (ArrivalStopPointDto stopPoint : trainDto.getStopPoints()) {
-				
-				sb.append("\n\t\t\t StopPoint : " +stopPoint.toString());
-			}
 			sb.append("\n\t\t},\n");
 		}
 		return sb.toString();
