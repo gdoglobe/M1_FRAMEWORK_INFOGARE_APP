@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import fr.pantheonsorbonne.ufr27.miage.jpa.Departure;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -31,11 +30,23 @@ public class DepartureDto {
 		this.stationName = stationName;
 		this.dateTime = dateTime;
 	}
-	public DepartureDto(Departure departureJpa) {
+	/*public DepartureDto(Departure departureJpa) {
 		this.id = departureJpa.getId();
 		this.dateTime = departureJpa.getDateTime();
 		this.stationName = departureJpa.getStation().getName();
 		
+	}*/
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getStationName() {
+		return stationName;
+	}
+
+	public Date getDateTime() {
+		return dateTime;
 	}
 	
 }

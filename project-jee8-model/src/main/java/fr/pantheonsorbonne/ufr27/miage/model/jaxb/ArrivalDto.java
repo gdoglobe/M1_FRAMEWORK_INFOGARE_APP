@@ -1,15 +1,13 @@
 package fr.pantheonsorbonne.ufr27.miage.model.jaxb;
 
 import java.util.Date;
-import fr.pantheonsorbonne.ufr27.miage.jpa.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlAccessorType(XmlAccessType.FIELD)
 public class ArrivalDto {
 	@XmlElement
 	private Long id;
@@ -28,11 +26,11 @@ public class ArrivalDto {
 		this.stationName = name;
 		this.dateTime = dateTime;
 	}
-	public ArrivalDto(ArrivalAbstract arrivalAbstractJpa) {
+	/*public ArrivalDto(ArrivalAbstract arrivalAbstractJpa) {
 		this.id = arrivalAbstractJpa.getId();
 		this.dateTime = arrivalAbstractJpa.getDateTime();
 		this.stationName = arrivalAbstractJpa.getStation().getName();	
-	}
+	}*/
 	
 		
 }

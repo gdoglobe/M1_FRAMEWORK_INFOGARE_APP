@@ -89,10 +89,6 @@ public class TrainNoReservation extends TrainAbstract{
 	}
 
     
-	@Override
-	public String getLocationCoordinatesToString() {
-		// TODO Auto-generated method stub
-		return this.location.getCoordinatesToString();
-	}
+	
     
 }

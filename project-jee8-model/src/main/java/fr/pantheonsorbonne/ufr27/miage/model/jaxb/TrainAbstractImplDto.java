@@ -1,6 +1,5 @@
 package fr.pantheonsorbonne.ufr27.miage.model.jaxb;
 
-import fr.pantheonsorbonne.ufr27.miage.jpa.*;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -37,12 +36,12 @@ public abstract class TrainAbstractImplDto implements ITrainDto{
 
 	}
 	
-	public TrainAbstractImplDto(TrainAbstract trainAbstractJpa) {
+	/*public TrainAbstractImplDto(TrainAbstract trainAbstractJpa) {
 		this.id = trainAbstractJpa.getId();
 		this.trainType = trainAbstractJpa.getTrainType();
 		this.departureDto = new DepartureDto(trainAbstractJpa.getDeparture());
 		this.arrivalDto = new ArrivalDto(trainAbstractJpa.getArrival());
-	}
+	}*/
 
 	static class TrainXmlAdapter  extends XmlAdapter<TrainAbstractImplDto,ITrainDto>{
 
@@ -78,4 +77,5 @@ public abstract class TrainAbstractImplDto implements ITrainDto{
 		return arrivalDto;
 	}
 	
+	   
 }

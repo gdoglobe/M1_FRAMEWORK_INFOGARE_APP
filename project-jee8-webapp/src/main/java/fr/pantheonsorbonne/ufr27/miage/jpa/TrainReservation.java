@@ -91,10 +91,6 @@ public class TrainReservation extends TrainAbstract{
 		this.stopPoints.add(stopPoint);
 	}
 
-	@Override
-	public String getLocationCoordinatesToString() {
-		// TODO Auto-generated method stub
-		return this.location.getCoordinatesToString();
-	}
+	
 
 }

@@ -3,7 +3,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-import fr.pantheonsorbonne.ufr27.miage.jpa.*;
 
 public class TrainNoReservationDto extends TrainAbstractImplDto{
 
@@ -24,13 +23,13 @@ public class TrainNoReservationDto extends TrainAbstractImplDto{
         this.arrivalDto = t.getArrival();
     }
     
-    public TrainNoReservationDto(TrainNoReservation trainNoReservationJpa) {
+    /*public TrainNoReservationDto(TrainNoReservation trainNoReservationJpa) {
 		this.id = trainNoReservationJpa.getId();
 		this.trainType = trainNoReservationJpa.getTrainType();
 		this.departureDto = new DepartureDto(trainNoReservationJpa.getDeparture());
 		this.arrivalDto = new ArrivalDto(trainNoReservationJpa.getArrival());
 		super.reservation = trainNoReservationJpa.isReservation();
-	}
+	}*/
     public TrainNoReservationDto(String id, TrainTypeNoReservationDto trainTypeNoReservationDto, DepartureDto departureDto, ArrivalDto arrivalDto) {
         this.id = id;
         super.reservation = false;
@@ -39,27 +38,31 @@ public class TrainNoReservationDto extends TrainAbstractImplDto{
         this.arrivalDto = arrivalDto;
     }
 
-    public String getId() {
-        return id;
-    }
-    
-    public void setId(String pId) {
-        this.id = pId;
-    }
-
-	public DepartureDto getDeparture() {
-		return departureDto;
+	@Override
+	public void setId(String id) {
+		 this.id = id;
+		
 	}
 
-	public String getTrainType() {
-		return trainType;
-	}
-	public void setTrainType(String trainType) {
-		this.trainType = trainType;
-	}
-	
-	public boolean isReservation() {
-		return super.reservation;
-	}
+	 public String getId() {
+	        return id;
+	    }
+	    
+	    
+
+		public DepartureDto getDeparture() {
+			return departureDto;
+		}
+
+		public String getTrainType() {
+			return trainType;
+		}
+		public void setTrainType(String trainType) {
+			this.trainType = trainType;
+		}
+		
+		public boolean isReservation() {
+			return super.reservation;
+		}
 
 }

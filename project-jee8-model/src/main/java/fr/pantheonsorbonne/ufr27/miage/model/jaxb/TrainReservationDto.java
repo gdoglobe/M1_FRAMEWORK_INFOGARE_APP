@@ -3,7 +3,7 @@ package fr.pantheonsorbonne.ufr27.miage.model.jaxb;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import fr.pantheonsorbonne.ufr27.miage.jpa.TrainReservation;
+
 
 
 public class TrainReservationDto extends TrainAbstractImplDto{
@@ -32,34 +32,42 @@ public class TrainReservationDto extends TrainAbstractImplDto{
 		this.arrivalDto = arrivalDto;
 	}
 
-	 public TrainReservationDto(TrainReservation trainReservationJpa) {
+	
+	@Override
+	public void setId(String id) {
+		 this.id = id;
+		
+	}
+
+	 public String getId() {
+	        return id;
+	    }
+	    
+	    
+
+		public DepartureDto getDeparture() {
+			return departureDto;
+		}
+
+		public String getTrainType() {
+			return trainType;
+		}
+		public void setTrainType(String trainType) {
+			this.trainType = trainType;
+		}
+		
+		public boolean isReservation() {
+			return super.reservation;
+		}
+
+
+	 /*public TrainReservationDto(TrainReservation trainReservationJpa) {
 			this.id = trainReservationJpa.getId();
 			this.trainType = trainReservationJpa.getTrainType();
 			this.departureDto = new DepartureDto(trainReservationJpa.getDeparture());
 			this.arrivalDto = new ArrivalDto(trainReservationJpa.getArrival());
 			super.reservation = trainReservationJpa.isReservation();
-		}
-	public String getId() {
-		return id;
-	}
+		}*/
 	
-	public void setId(String pId) {
-		this.id = pId;
-	}
-
-	public DepartureDto getDeparture() {
-		return departureDto;
-	}
-
-	public String getTrainType() {
-		return trainType;
-	}
-	public void setTrainType(String trainType) {
-		this.trainType = trainType;
-	}
-
-	public boolean isReservation() {
-		return super.reservation;
-	}
-
+	
 }
