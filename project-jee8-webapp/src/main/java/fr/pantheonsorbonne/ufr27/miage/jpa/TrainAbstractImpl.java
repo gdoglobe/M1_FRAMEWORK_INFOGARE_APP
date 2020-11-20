@@ -3,7 +3,10 @@ package fr.pantheonsorbonne.ufr27.miage.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -13,7 +16,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class TrainAbstractImpl implements ITrain{
 	
 	@Id
@@ -34,6 +38,8 @@ public abstract class TrainAbstractImpl implements ITrain{
 	protected ArrivalTerminus arrivalTerminus;
 	@OneToMany
 	protected List<ArrivalStopPoint> stopPoints; //maybe LinkedList for rank insersion // or tree set to have sorted stop point
+	
+	//private String variationTimeEstimate;
 
 	public TrainAbstractImpl() {
 		this.id = "";

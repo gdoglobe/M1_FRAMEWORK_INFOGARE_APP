@@ -18,24 +18,23 @@ import javax.xml.bind.annotation.XmlElement;
 
 
 
-
+@Entity
 public class InfoCentre {
-	
+	@Id
 	private Long id;
-	
-	
-	private List<ITrain> trains = new ArrayList<ITrain>();
+	@OneToMany
+	private List<TrainAbstractImpl> trains; //= new ArrayList<TrainAbstractImpl>();
 	
 	public InfoCentre() {	
 		
 	}
 	
 	
-	public void addTrain(TrainReservation t) {
+	public void addTrain(TrainAbstractImpl t) {
 		trains.add(t);
 	}
 	
-	public List<ITrain> getTrains() {
+	public List<TrainAbstractImpl> getTrains() {
 		return trains;
 	}
 		
