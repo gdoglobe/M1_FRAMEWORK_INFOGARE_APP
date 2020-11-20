@@ -14,9 +14,6 @@ public class TrainStationDto {
 	// idTrain/ dest/prov TrainInfo
 	@XmlElement
 	private List<ITrainDto> departureTrains;
-	
-	
-	
 	private List<ITrainDto> arrivalTrains;
 	private List<DisturbanceTrainDto> disturbanceDepartureTrains;
 	private List<DisturbanceTrainDto> disturbanceArrivalTrains;
@@ -43,10 +40,7 @@ public class TrainStationDto {
 			sb.append("\t\tTrainId : " + trainDto.getId() + "{\n");
 			sb.append("\t\t"+trainDto.getDeparture().toString());
 			sb.append("\t\t"+trainDto.getArrival().toString());
-			for (ArrivalStopPointDto stopPoint : trainDto.getStopPoints()) {
-				
-				sb.append("\n\t\t\t StopPoint : " +stopPoint.toString());
-			}
+			
 			sb.append("\n\t\t},\n");
 		}
 		return sb.toString();

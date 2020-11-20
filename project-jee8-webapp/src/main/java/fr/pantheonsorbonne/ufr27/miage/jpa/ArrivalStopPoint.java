@@ -8,17 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ArrivalStopPoint implements Comparable<ArrivalStopPoint> {
+public class ArrivalStopPoint extends ArrivalAbstract{
 	
-	@Id
-	@GeneratedValue
-	private Long id;
 	
-	private Integer rank;
-	
-	private Date dateTime;
-	@OneToOne
-	private Station station;
 	
 	public ArrivalStopPoint() {
 		
@@ -26,6 +18,7 @@ public class ArrivalStopPoint implements Comparable<ArrivalStopPoint> {
 	public ArrivalStopPoint(Integer rank, Date dateTime, Station station) {
 		this.rank = rank;
 		this.dateTime = dateTime;
+		this.station = station;
 	}
 	
 	
@@ -35,7 +28,7 @@ public class ArrivalStopPoint implements Comparable<ArrivalStopPoint> {
 	}
 	
 	
-	@Override
+	
 	public int compareTo(ArrivalStopPoint arrivale) {
 		// TODO Auto-generated method stub
 		return this.rank.compareTo(arrivale.getRank());

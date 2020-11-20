@@ -8,15 +8,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import fr.pantheonsorbonne.ufr27.miage.jpa.Departure;
+
 @XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DepartureDto {
 	@XmlElement
 	private Long id;
 	@XmlElement
-	private String trainStationName;
-	@XmlElement
-	private LocationDto locationDto;
+	private String stationName;
 	
 	@XmlElement
 	@XmlJavaTypeAdapter(DateAdapterDto.class)
@@ -26,25 +26,39 @@ public class DepartureDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public DepartureDto(String name, LocationDto locationDto, Date dateTime) {
-		this.trainStationName = name;
-		this.locationDto = locationDto;
+	public DepartureDto(Long id, String stationName, Date dateTime) {
+		this.id = id;
+		this.stationName = stationName;
 		this.dateTime = dateTime;
 	}
-	public Long getId() {
+	public DepartureDto(Departure departureJpa) {
+		this.id = departureJpa.getId();
+		this.dateTime = departureJpa.getDateTime();
+		this.stationName = departureJpa.getStation().getName();
+		
+	}
+	
+}
+
+
+
+
+
+/*
+ 
+ public Long getId() {
 		return id;
 	}
-	public String getTrainStationName() {
-		return trainStationName;
+	public String getStationName() {
+		return stationName;
 	}
-	public LocationDto getLocation() {
-		return this.locationDto;
-	}
+	
 	public Date getDateTime() {
 		return dateTime;
 	}
 	@Override
 	public String toString() {
-		return 	"Departure : [ id = "+this.getId()+" , TrainStationName = "+this.getTrainStationName()+" , dateTime = "+this.getDateTime()+" ];\n";
-	}
-}
+		return 	"Departure : [ id = "+this.getId()+" , TrainStationName = "+this.getStationName()+" , dateTime = "+this.getDateTime()+" ];\n";
+	} 
+  
+ */

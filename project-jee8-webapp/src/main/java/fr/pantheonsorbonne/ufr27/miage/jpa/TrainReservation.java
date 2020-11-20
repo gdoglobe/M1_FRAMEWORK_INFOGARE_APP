@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-public class TrainReservation extends TrainAbstractImpl{
+public class TrainReservation extends TrainAbstract{
 
 	//protected boolean reservation;
 
