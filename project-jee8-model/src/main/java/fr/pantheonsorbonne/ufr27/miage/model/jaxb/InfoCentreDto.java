@@ -1,16 +1,15 @@
 package fr.pantheonsorbonne.ufr27.miage.model.jaxb;
 
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+
 import javax.xml.bind.annotation.XmlElement;
 
 
