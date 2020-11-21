@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ITrainDto;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,20 +26,30 @@ public class InfoCentre {
 	@Id
 	private Long id;
 	@OneToMany
-	private List<TrainAbstractImpl> trains; //= new ArrayList<TrainAbstractImpl>();
+	private List<TrainAbstract> trains; //= new ArrayList<TrainAbstractImpl>();
 	
 	public InfoCentre() {	
 		
 	}
 	
 	
-	public void addTrain(TrainAbstractImpl t) {
+	public void addTrain(TrainAbstract t) {
 		trains.add(t);
 	}
 	
-	public List<TrainAbstractImpl> getTrains() {
+	public List<TrainAbstract> getTrains() {
 		return trains;
 	}
 		
+	
+
+	public double calculerTrainVariationDepart(TrainAbstract t)
+	{
+		return 0;	
+	}
+	public double calculerTrainVariationArrive(TrainAbstract t)
+	{
+		return 0;
+	}
 
 }

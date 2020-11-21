@@ -1,6 +1,5 @@
 package fr.pantheonsorbonne.ufr27.miage.model.jaxb;
 
-import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity
+
 public class LocationDto {
 	@XmlElement
 	private String logitude;

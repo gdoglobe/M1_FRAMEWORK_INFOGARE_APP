@@ -8,8 +8,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+
 @XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DepartureDto {
 	@XmlElement
 	private Long id;
@@ -29,10 +30,12 @@ public class DepartureDto {
 		this.stationName = stationName;
 		this.dateTime = dateTime;
 	}
+
 	
 	public Long getId() {
 		return id;
 	}
+
 	public String getStationName() {
 		return stationName;
 	}
@@ -43,5 +46,6 @@ public class DepartureDto {
 	@Override
 	public String toString() {
 		return 	"Departure : [ id = "+this.getId()+" , TrainStationName = "+this.getStationName()+" , dateTime = "+this.getDateTime()+" ];\n";
+
 	}
 }

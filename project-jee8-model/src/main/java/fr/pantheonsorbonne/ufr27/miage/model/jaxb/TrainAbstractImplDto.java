@@ -1,12 +1,9 @@
 package fr.pantheonsorbonne.ufr27.miage.model.jaxb;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -19,7 +16,7 @@ public abstract class TrainAbstractImplDto implements ITrainDto{
 
 	@XmlElement
 	protected String trainType;
-	
+
 	@XmlElement
 	protected DepartureDto departureDto;
 	
@@ -31,14 +28,22 @@ public abstract class TrainAbstractImplDto implements ITrainDto{
 		this.departureDto = new DepartureDto();
 		this.arrivalDto = new ArrivalDto();
 	}
-	public TrainAbstractImplDto(String id, String trainTypeDto, DepartureDto departureDto, ArrivalDto arrivalDto) {
-		this.id = id;
 
+	public TrainAbstractImplDto(String id, String trainTypeDto, DepartureDto departureDto, ArrivalDto arrivalDto) {
+
+		this.id = id;
 		this.trainType = trainTypeDto.toString();
 		this.departureDto = departureDto;
 		this.arrivalDto = arrivalDto;
 
 	}
+	
+	/*public TrainAbstractImplDto(TrainAbstract trainAbstractJpa) {
+		this.id = trainAbstractJpa.getId();
+		this.trainType = trainAbstractJpa.getTrainType();
+		this.departureDto = new DepartureDto(trainAbstractJpa.getDeparture());
+		this.arrivalDto = new ArrivalDto(trainAbstractJpa.getArrival());
+	}*/
 
 	static class TrainXmlAdapter  extends XmlAdapter<TrainAbstractImplDto,ITrainDto>{
 

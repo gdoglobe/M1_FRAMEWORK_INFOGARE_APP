@@ -10,23 +10,20 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class ArrivalTerminus implements Comparable<ArrivalTerminus> {
-		@Id
-		@GeneratedValue
-		private Long id;
+public class ArrivalTerminus {
 		
-		private Integer rank;
-		
-		private Date dateTime;
-		@OneToOne
-		private Station station;
-		
+	@Id
+	private Long id;
+	private Integer rank;
+	private Date dateTime;
+	private Station station;
 		public ArrivalTerminus() {
 			
 		}
 		public ArrivalTerminus(Integer rank, Date dateTime, Station station) {
 			this.rank = rank;
 			this.dateTime = dateTime;
+			this.station = station;
 		}
 		
 		
@@ -36,7 +33,7 @@ public class ArrivalTerminus implements Comparable<ArrivalTerminus> {
 		}
 		
 		
-		@Override
+		
 		public int compareTo(ArrivalTerminus arrivale) {
 			// TODO Auto-generated method stub
 			return this.rank.compareTo(arrivale.getRank());

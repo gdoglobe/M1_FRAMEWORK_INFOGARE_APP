@@ -19,24 +19,31 @@ import javax.xml.bind.annotation.XmlElement;
 public class InfoCentreDto {
 	@XmlElement
 	private String id;
+
 	@XmlElement
 	private Set<TrainStationDto> trainStationList;	
 	//@XmlElement
 	//private List<TrainStationDto> trainStationList;
 
 	
+
 	HashMap<String, TrainStationDto> trainStationDtos;
+	
 	public InfoCentreDto() {
+
 		
 		trainStationDtos = new HashMap<String, TrainStationDto>();
 		//use index as key for set ins list
 		
 		trainStationList = new HashSet<TrainStationDto>();
 		//trainStationList = new ArrayList<TrainStationDto>();
+
 	}
+	
 	public HashMap<String, TrainStationDto> getGares() {
 		return trainStationDtos;
 	}
+	
 	public String getGaresToString() {
 		
 		StringBuilder sb = new StringBuilder();
@@ -56,6 +63,7 @@ public class InfoCentreDto {
 		return sb.toString();
 	}
 
+
 	
 	public double calculerTrainVariationDepart(ITrainDto t)
 	{
@@ -65,6 +73,7 @@ public class InfoCentreDto {
 	{
 		return 0;
 	}
+
 	
 	public void addDeparture(ITrainDto t)
 	{
@@ -84,16 +93,10 @@ public class InfoCentreDto {
 			trainStationDtos.putIfAbsent(t.getDeparture().getStationName(), g);		
 		}
 		
-		//### use index as key for set in list for optimisation
-		//trainStationList = new HashSet<TrainStationDto>();
-		//trainStationList = new ArrayList<TrainStationDto>();
-		for(Entry<String, TrainStationDto> trainStationDto : trainStationDtos.entrySet())
-		{
-			trainStationList.add(trainStationDto.getValue());
-		}
+		
 		
 	}
-	public void setArrive(ITrainDto t)
+	public void addArrival(ITrainDto t)
 	{}
 	
 

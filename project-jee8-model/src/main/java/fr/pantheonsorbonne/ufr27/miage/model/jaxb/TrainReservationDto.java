@@ -1,18 +1,10 @@
 package fr.pantheonsorbonne.ufr27.miage.model.jaxb;
 
 
-
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 
-//@XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
-//public class Train implements ITrain{
 
 public class TrainReservationDto extends TrainAbstractImplDto{
 
@@ -20,6 +12,7 @@ public class TrainReservationDto extends TrainAbstractImplDto{
 	   
 	public TrainReservationDto() {
 		super.reservation = true;
+
 		TrainNoReservationDto t = new TrainNoReservationDto("TGV1", "TER", new DepartureDto(Long.valueOf(0),"Paris", new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalDto(Long.valueOf(0),"Bordeaux", new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()));
 		this.newinstance(t);
     }
@@ -66,5 +59,6 @@ public class TrainReservationDto extends TrainAbstractImplDto{
 		return super.reservation;
 	}
 	
+
 
 }

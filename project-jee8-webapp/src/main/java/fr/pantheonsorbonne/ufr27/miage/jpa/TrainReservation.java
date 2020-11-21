@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-public class TrainReservation extends TrainAbstractImpl{
+public class TrainReservation extends TrainAbstract{
 
 	//protected boolean reservation;
 
@@ -91,10 +91,6 @@ public class TrainReservation extends TrainAbstractImpl{
 		this.stopPoints.add(stopPoint);
 	}
 
-	@Override
-	public String getLocationCoordinatesToString() {
-		// TODO Auto-generated method stub
-		return this.location.getCoordinatesToString();
-	}
+	
 
 }

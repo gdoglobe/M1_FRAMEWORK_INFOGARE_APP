@@ -51,7 +51,9 @@ public class InfoGareResource {
 	    
 	    
 	  
+
 	    infoCentreDto.addDeparture(new TrainNoReservationDto("TER",TrainTypeNoReservationDto.RER.toString(), new DepartureDto(Long.valueOf(1),"Rouen", new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalDto(Long.valueOf(1),"Bordeaux", new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime())));
+
 		
 	  		infoCentreDto.addDeparture(new TrainReservationDto("TGV1",TrainTypeReservationDto.TVG.toString(), new DepartureDto(Long.valueOf(2),"Paris",  new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime()), new ArrivalDto(Long.valueOf(2),"Bordeaux", new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime())));
 	  		

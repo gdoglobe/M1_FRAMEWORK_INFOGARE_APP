@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class TrainAbstractImpl implements ITrain{
+public abstract class TrainAbstract {
 	
 	@Id
 	protected String id;
@@ -41,14 +41,14 @@ public abstract class TrainAbstractImpl implements ITrain{
 	
 	//private String variationTimeEstimate;
 
-	public TrainAbstractImpl() {
+	public TrainAbstract() {
 		this.id = "";
 		this.departure = new Departure();
 		this.arrivalTerminus = new ArrivalTerminus();
 		this.location = new Location("", "");
 		this.stopPoints = new ArrayList<ArrivalStopPoint>();
 	}
-	public TrainAbstractImpl(String id, ITrainType trainType, Departure departure, ArrivalTerminus arrivalTerminus,Location location, List<ArrivalStopPoint> stopPoints) {
+	public TrainAbstract(String id, ITrainType trainType, Departure departure, ArrivalTerminus arrivalTerminus,Location location, List<ArrivalStopPoint> stopPoints) {
 		this.id = id;
 
 		this.trainType = trainType.toString();
