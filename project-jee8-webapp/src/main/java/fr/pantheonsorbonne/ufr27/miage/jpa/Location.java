@@ -9,12 +9,12 @@ public class Location {
 	private String logitude;
 	
 	private String latitude;
-	private String adress;
+	//private String adress;
 	
 	public Location() {
 		this.logitude = "";
 		this.latitude = "";
-		this.adress = "";
+		//this.adress = "";
 	}
 	public Location(String logitude, String latitude) {
 		this.logitude = logitude;
@@ -33,12 +33,12 @@ public class Location {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	public String getAdress() {
+	/*public String getAdress() {
 		return adress;
 	}
 	public void setAdress(String adress) {
 		this.adress = adress;
-	}
+	}*/
 	public void setCoordinates(String logitude, String latitude) {
 		this.logitude = logitude;
 		this.latitude = latitude;

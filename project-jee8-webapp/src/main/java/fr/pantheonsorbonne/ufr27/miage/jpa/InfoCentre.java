@@ -4,6 +4,8 @@ package fr.pantheonsorbonne.ufr27.miage.jpa;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +27,7 @@ public class InfoCentre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
 	private List<TrainAbstract> trains = new ArrayList<TrainAbstract>();
 	
 	public InfoCentre() {	

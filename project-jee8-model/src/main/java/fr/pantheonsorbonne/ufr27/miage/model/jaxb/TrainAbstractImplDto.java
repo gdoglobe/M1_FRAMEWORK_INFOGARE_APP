@@ -22,11 +22,15 @@ public abstract class TrainAbstractImplDto implements ITrainDto{
 	
 	@XmlElement
 	protected ArrivalDto arrivalDto;
+	
+	@XmlElement
+	protected String direction;
 
 	public TrainAbstractImplDto() {
 		this.id = "";
 		this.departureDto = new DepartureDto();
 		this.arrivalDto = new ArrivalDto();
+		this.direction = "";
 	}
 
 	public TrainAbstractImplDto(String id, String trainTypeDto, DepartureDto departureDto, ArrivalDto arrivalDto) {

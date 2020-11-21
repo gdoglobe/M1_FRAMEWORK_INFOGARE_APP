@@ -3,6 +3,7 @@ package fr.pantheonsorbonne.ufr27.miage.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,12 +35,12 @@ public abstract class TrainAbstract {
 
 	protected String trainType;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	protected Departure departure;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	protected ArrivalTerminus arrivalTerminus;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
 	protected List<ArrivalStopPoint> stopPoints; //maybe LinkedList for rank insersion // or tree set to have sorted stop point
 	
 	//private String variationTimeEstimate;

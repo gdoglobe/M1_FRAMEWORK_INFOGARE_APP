@@ -2,10 +2,13 @@ package fr.pantheonsorbonne.ufr27.miage.jpa;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -15,7 +18,8 @@ public class Departure {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date dateTime;
-	@OneToOne
+	
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Station station;
 	
 	public Departure() {
