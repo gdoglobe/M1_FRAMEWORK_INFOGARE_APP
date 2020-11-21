@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -11,7 +12,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Departure {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date dateTime;
 	@OneToOne
@@ -21,9 +22,10 @@ public class Departure {
 		
 	}
 	
-	public Departure(Date dateTime,Station station ) {
+	public Departure(Long id, Date dateTime,Station station) {
 		this.dateTime = dateTime;
 		this.station = station;
+		this.id = id;
 	}
 	public Long getId() {
 		return id;

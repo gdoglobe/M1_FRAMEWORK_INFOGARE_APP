@@ -20,8 +20,12 @@ public class InfoCentreDto {
 	@XmlElement
 	private String id;
 
+	//@XmlElement
+	private Set<TrainStationDto> trainStationList;
 	@XmlElement
-	private Set<TrainStationDto> trainStationList;	
+	private TrainsDto trainsDto;
+	
+	
 	//@XmlElement
 	//private List<TrainStationDto> trainStationList;
 
@@ -37,6 +41,8 @@ public class InfoCentreDto {
 		
 		trainStationList = new HashSet<TrainStationDto>();
 		//trainStationList = new ArrayList<TrainStationDto>();
+		
+		trainsDto = new TrainsDto();
 
 	}
 	
@@ -96,8 +102,19 @@ public class InfoCentreDto {
 		
 		
 	}
-	public void addArrival(ITrainDto t)
-	{}
+	
+	public void addTrainDto(ITrainDto t)
+	{
+		this.trainsDto.addTrain(t);
+	}
+
+	public TrainsDto getTrainsDto() {
+		return trainsDto;
+	}
+
+	public void setTrainsDto(TrainsDto trainsDto) {
+		this.trainsDto = trainsDto;
+	}
 	
 
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -21,6 +23,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 public abstract class TrainAbstract {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected String id;
 
 	protected Location location;
@@ -91,6 +94,15 @@ public abstract class TrainAbstract {
 	}
 	public List<ArrivalStopPoint> getStopPoints() {
 		return stopPoints;
+	}
+	public ArrivalStopPoint getArrivalStopPointByStationName(String stationName)
+	{
+		for(ArrivalStopPoint stopPoint : this.stopPoints)
+		{
+			if(stopPoint.getStation().getName().equalsIgnoreCase(stationName))
+				return stopPoint;
+		}
+		return null;
 	}
 
 	

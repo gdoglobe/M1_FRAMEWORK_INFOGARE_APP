@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 
 public class TrainReservationDto extends TrainAbstractImplDto{
 
-	protected boolean reservation;
+	//protected boolean reservation;
 	   
 	public TrainReservationDto() {
 		super.reservation = true;
@@ -59,6 +59,15 @@ public class TrainReservationDto extends TrainAbstractImplDto{
 		return super.reservation;
 	}
 	
-
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\t\t\tid : "+this.id+"\n");
+		sb.append("\t\t\treservation : "+this.reservation+"\n");
+		sb.append("\t\t\ttype : "+this.trainType+"\n");
+		sb.append("\t\t\t"+this.departureDto.toString());
+		sb.append("\t\t\ttype"+this.arrivalDto.toString());
+		return sb.toString();
+	}
 
 }

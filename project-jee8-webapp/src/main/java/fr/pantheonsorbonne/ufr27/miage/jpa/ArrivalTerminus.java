@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -13,6 +14,7 @@ import javax.persistence.OneToOne;
 public class ArrivalTerminus {
 		
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Integer rank;
 	private Date dateTime;
@@ -20,10 +22,11 @@ public class ArrivalTerminus {
 		public ArrivalTerminus() {
 			
 		}
-		public ArrivalTerminus(Integer rank, Date dateTime, Station station) {
+		public ArrivalTerminus(Long id, Integer rank, Date dateTime, Station station) {
 			this.rank = rank;
 			this.dateTime = dateTime;
 			this.station = station;
+			this.id = id;
 		}
 		
 		

@@ -11,12 +11,30 @@ import javax.xml.bind.annotation.XmlElement;
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class TrainStationDto {
 	private String id;
-	// idTrain/ dest/prov TrainInfo
 	@XmlElement
 	private List<ITrainDto> departureTrains;
+	@XmlElement
 	private List<ITrainDto> arrivalTrains;
+	@XmlElement
 	private List<DisturbanceTrainDto> disturbanceDepartureTrains;
+	@XmlElement
 	private List<DisturbanceTrainDto> disturbanceArrivalTrains;
+
+	public List<ITrainDto> getDepartureTrains() {
+		return departureTrains;
+	}
+
+	public List<ITrainDto> getArrivalTrains() {
+		return arrivalTrains;
+	}
+
+	public List<DisturbanceTrainDto> getDisturbanceDepartureTrains() {
+		return disturbanceDepartureTrains;
+	}
+
+	public List<DisturbanceTrainDto> getDisturbanceArrivalTrains() {
+		return disturbanceArrivalTrains;
+	}
 
 	public TrainStationDto() {
 		this.departureTrains = new ArrayList<ITrainDto>();
