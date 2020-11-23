@@ -116,7 +116,7 @@ public class Main {
 		SLF4JBridgeHandler.install();
 		final HttpServer server = startServer();
 
-		BrokerUtils.startBroker();
+		BrokerUtils.startBroker(); // ne marche pas probleme config
 
 		PersistenceConf pc = new PersistenceConf();
 		

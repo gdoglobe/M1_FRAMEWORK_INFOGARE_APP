@@ -118,6 +118,24 @@ public abstract class TrainAbstract {
 		}
 		return null;
 	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setSpeedKM(double speedKM) {
+		this.speedKM = speedKM;
+	}
+	public void setReservation(boolean reservation) {
+		this.reservation = reservation;
+	}
+	public void setDeparture(Departure departure) {
+		this.departure = departure;
+	}
+	public void setArrivalTerminus(ArrivalTerminus arrivalTerminus) {
+		this.arrivalTerminus = arrivalTerminus;
+	}
+	public void setStopPoints(List<ArrivalStopPoint> stopPoints) {
+		this.stopPoints = stopPoints;
+	}
 
 	
 }

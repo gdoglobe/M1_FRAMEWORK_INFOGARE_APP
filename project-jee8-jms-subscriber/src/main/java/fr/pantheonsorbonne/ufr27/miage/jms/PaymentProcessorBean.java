@@ -26,7 +26,7 @@ import fr.pantheonsorbonne.ufr27.miage.model.jaxb.Ccinfo;
 
 @ApplicationScoped
 public class PaymentProcessorBean {
-
+/*
 	@Inject
 	private ConnectionFactory connectionFactory;
 
@@ -102,6 +102,6 @@ public class PaymentProcessorBean {
 			onMessage((TextMessage) consumer.receive());
 	
 
-	}
+	}*/
 
 }

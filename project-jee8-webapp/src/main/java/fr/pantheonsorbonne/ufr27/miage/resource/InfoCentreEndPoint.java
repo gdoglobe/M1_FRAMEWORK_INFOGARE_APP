@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.enterprise.inject.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -74,41 +75,116 @@ public class InfoCentreEndPoint {
 	
 	@POST
 	@Path("/Train")
-	 @Consumes({MediaType.APPLICATION_XML })
+	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
 	public Response postTrain(TrainEntityDto trainEntityDto, @Context UriInfo uriInfo) throws DatatypeConfigurationException {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = null;
 		try {
 			json = mapper.writeValueAsString(trainEntityDto);
 		} catch (JsonProcessingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		System.out.println("Train recieve\n" + json);
 		try {
 			Thread.sleep(20000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		TrainAbstract trainEntity = new TrainFactory().getInstance(trainEntityDto);
 		infoCentreEntity = infoCentreDao.find(Long.valueOf(1));
 		infoCentreEntity.addTrain(trainEntity);
 		infoCentreDao.update(infoCentreEntity);
-		 return Response.status(Response.Status.CREATED.getStatusCode()).header("Location", String.format("%s/%s", uriInfo.getAbsolutePath().toString(), trainEntity.getId())).build();
+		 //return Response.status(Response.Status.CREATED.getStatusCode()).header("Location", String.format("%s/%s", uriInfo.getAbsolutePath().toString(), trainEntity.getId())).build();
 
-		//return Response.ok(t).build();
+		return Response.ok(trainEntityDto).build();
 		
 	}
 	
+	@PUT
+	@Path("/Train")
+	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	public Response putTrain(TrainEntityDto trainEntityDto, @Context UriInfo uriInfo) throws DatatypeConfigurationException {
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(trainEntityDto);
+		} catch (JsonProcessingException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println("Train recieve\n" + json);
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		TrainAbstract trainEntity = new TrainFactory().getInstance(trainEntityDto);
+		infoCentreEntity = infoCentreDao.find(Long.valueOf(1));
+		TrainAbstract trainEntityToUpdate = infoCentreEntity.getTrainEntityById(trainEntity.getId());
+		if(trainEntityToUpdate != null)
+		{
+			infoCentreEntity.removeTrainEntityById(trainEntityToUpdate.getId());
+			infoCentreEntity.addTrain(trainEntity);
+			infoCentreDao.update(infoCentreEntity);
+		}
+		 //return Response.status(Response.Status.CREATED.getStatusCode()).header("Location", String.format("%s/%s", uriInfo.getAbsolutePath().toString(), trainEntity.getId())).build();
+		return Response.ok(trainEntity.getDto()).build();	
+	}
+	
+	
+	@DELETE
+	@Path("/Train")
+	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	public Response deleteTrain(TrainEntityDto trainEntityDto, @Context UriInfo uriInfo) throws DatatypeConfigurationException {
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(trainEntityDto);
+		} catch (JsonProcessingException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println("Train recieve from Train to delete\n" + json);
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		TrainAbstract trainEntity = new TrainFactory().getInstance(trainEntityDto);
+		infoCentreEntity = infoCentreDao.find(Long.valueOf(1));
+		TrainAbstract trainEntityToUpdate = infoCentreEntity.getTrainEntityById(trainEntity.getId());
+		if(trainEntityToUpdate != null)
+		{
+			trainEntity = infoCentreEntity.removeTrainEntityById(trainEntityToUpdate.getId());
+			infoCentreDao.update(infoCentreEntity);
+		}
+		 //return Response.status(Response.Status.CREATED.getStatusCode()).header("Location", String.format("%s/%s", uriInfo.getAbsolutePath().toString(), trainEntity.getId())).build();
+		return Response.ok(trainEntity.getDto()).build();	
+	}
+	
+
+
+	
+	
+	
 	
 	@GET
-	@Path("/InfoGare/Departure/{stationName}")
+	@Path("/InfoGare/Departures/{stationName}")
 	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
-	public Response getMessage(@PathParam("stationName") String stationName) {
+	public Response getInfoGareDepartures(@PathParam("stationName") String stationName) {
 		InfoCentreDao ifcDao = new InfoCentreDao();
 		InfoCentre ifc = ifcDao.find(Long.valueOf(1));
 		return Response.ok(ifc.getTrainsDtoByDepartureStationName(stationName)).build();
+	}
+	
+	@GET
+	@Path("/InfoGare/Arrivals/{stationName}")
+	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	public Response getInfoGareArrivals(@PathParam("stationName") String stationName) {
+		InfoCentreDao ifcDao = new InfoCentreDao();
+		InfoCentre ifc = ifcDao.find(Long.valueOf(1));
+		return Response.ok(ifc.getTrainsDtoByArrivalStationName(stationName)).build();
 	}
 	
 	

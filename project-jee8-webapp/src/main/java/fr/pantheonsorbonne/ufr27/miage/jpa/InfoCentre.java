@@ -218,6 +218,38 @@ public class InfoCentre {
 	}
 
 
+	public TrainAbstract getTrainEntityById(String trainId) {
+		TrainAbstract trainEntity = null;
+		for(TrainAbstract t : this.trains)
+		{
+			if(t.getId().equalsIgnoreCase(trainId))
+			{
+				trainEntity = t;
+				trainEntity.getArrival().setRank(trainEntity.getStopPoints().size()+1);
+				return trainEntity;
+			}
+				
+			}
+			
+		return trainEntity;
+	}
+	
+	public TrainAbstract removeTrainEntityById(String trainId) {
+		TrainAbstract trainEntity = null;
+		for(TrainAbstract t : this.trains)
+		{
+			if(t.getId().equalsIgnoreCase(trainId))
+				{
+					this.trains.remove(t);
+					return t;
+				}	
+			}
+		return trainEntity;
+	}
+	
+	
+
+
 	 
 
 }

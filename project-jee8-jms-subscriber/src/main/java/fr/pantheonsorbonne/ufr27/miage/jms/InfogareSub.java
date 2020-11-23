@@ -1,6 +1,5 @@
 package fr.pantheonsorbonne.ufr27.miage.jms;
 
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.UUID;
@@ -44,7 +43,8 @@ public class InfogareSub implements Closeable {
 	void init() {
 		try {
 			connection = connectionFactory.createConnection("nicolas", "nicolas");
-			connection.setClientID("Order subscriber " + UUID.randomUUID());
+			//connection.setClientID("Order subscriber " + UUID.randomUUID());
+			
 			connection.start();
 			session = connection.createSession();
 			
