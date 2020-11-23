@@ -121,6 +121,7 @@ public class InfoCentre {
 			if(t.getId().equalsIgnoreCase(trainId))
 			{
 				trainEntityDto = t.getDto();
+				trainEntityDto.getArrivalTerminus().setRank(trainEntityDto.getStopPoints().size()+1);
 				return trainEntityDto;
 			}
 				

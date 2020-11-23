@@ -80,7 +80,7 @@ public abstract class TrainAbstractImplDto implements ITrainDto{
 		return departureDto;
 	}
 	public ArrivalDto getArrival() {
-		return arrivalDto;
+		return arrivalDto;  
 	}
 	
 }

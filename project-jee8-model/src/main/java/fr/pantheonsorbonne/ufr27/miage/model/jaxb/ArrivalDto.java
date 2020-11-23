@@ -47,7 +47,7 @@ public class ArrivalDto  {
 		@Override
 		public String toString() {
 			// TODO Auto-generated method stub
-			return 	"Arrival : [ "+" , TrainStationName = "+this.getStationName()+" , dateTime = "+this.getDateTime()+" ];\n";
+			return 	"Arrival : [ TrainStationName = "+this.getStationName()+" , dateTime = "+this.getDateTime()+" ];\n";
 
 		}
 		

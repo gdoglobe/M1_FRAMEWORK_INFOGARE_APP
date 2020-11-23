@@ -34,7 +34,7 @@ public abstract class TrainAbstract {
 	
 	protected double speedKM;
 	
-	protected boolean reservation = false;
+	protected boolean reservation = false; 
 
 	protected String trainType;
 	

@@ -8,6 +8,7 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 import javax.jms.ConnectionFactory;
 import javax.jms.Queue;
+import javax.jms.Topic;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -32,7 +33,11 @@ public class JMSProducer {
 		jndiBindings.put("connectionFactory.ConnectionFactory", "tcp://localhost:61616");
 		jndiBindings.put("app/jms/PaymentAckQueue", "PaymentAckQueue");
 		jndiBindings.put("app/jms/PaymentQueue", "PaymentQueue");
-
+		//====JMS2====
+		jndiBindings.put("topic.ParisTopic", "ParisTopic");
+		jndiBindings.put("topic.LyonTopic", "LyonTopic");
+		jndiBindings.put("topic.MarseilleTopic", "MarseilleTopic");
+		//====JMS2====!
 		Context c = null;
 		try {
 			c = new InitialContext(jndiBindings);
@@ -58,9 +63,36 @@ public class JMSProducer {
 		return (Queue) JNDI_CONTEXT.lookup("diplomaFiles");
 	}
 
+//	@Produces
+//	public ConnectionFactory getJMSConnectionFactory() throws NamingException {
+//		return (ConnectionFactory) JNDI_CONTEXT.lookup("ConnectionFactory");
+//	}
+	
+	///===========================JMS2========================
 	@Produces
+	@Named("Paris")
+	public Topic getJMSParis() throws NamingException {
+		return (Topic) JNDI_CONTEXT.lookup("ParisTopic");
+	}
+
+	@Produces
+	@Named("Lyon")
+	public Topic getJMSLyon() throws NamingException {
+		return (Topic) JNDI_CONTEXT.lookup("LyonTopic");
+	}
+	
+	@Produces
+	@Named("Marseille")
+	public Topic getJMSMarseille() throws NamingException {
+		return (Topic) JNDI_CONTEXT.lookup("MarseilleTopic");
+	}
+
+
+	@Produces
+
 	public ConnectionFactory getJMSConnectionFactory() throws NamingException {
 		return (ConnectionFactory) JNDI_CONTEXT.lookup("ConnectionFactory");
 	}
+
 
 }

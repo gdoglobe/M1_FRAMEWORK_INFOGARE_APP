@@ -42,6 +42,12 @@ public class TrainClientApp {
 			//TrainEntityDto trainEntityDto = target.request().get().readEntity(TrainEntityDto.class);
 			//System.out.println(trainEntityDto);
 		System.out.println(target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//POST ======================
 		
@@ -52,17 +58,20 @@ public class TrainClientApp {
 		StationEntityDto tours = new StationEntityDto(Long.valueOf(1), "Tours", location);
 		StationEntityDto limoges = new StationEntityDto(Long.valueOf(2), "Limoges", location);
 		
-		stopPoints.add(new ArrivalStopPointEntityDto(Long.valueOf(0), 1, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), tours));
-		stopPoints.add(new ArrivalStopPointEntityDto(Long.valueOf(1), 2, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), limoges));
+		stopPoints.add(new ArrivalStopPointEntityDto(Long.valueOf(0), 1,new GregorianCalendar(2020, Calendar.JANUARY, 15, 18, 30).getTime() , tours));
+		stopPoints.add(new ArrivalStopPointEntityDto(Long.valueOf(1), 2, new GregorianCalendar(2019, Calendar.JANUARY, 15, 18, 30).getTime(), limoges));
 		
 		DepartureEntityDto dp = new DepartureEntityDto(Long.valueOf(6), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), Bourges);
 		ArrivalTerminusEntityDto at = new ArrivalTerminusEntityDto(Long.valueOf(7), 3, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), Brest);
-		TrainEntityDto train = new TrainEntityDto("TER2",location,0,false,TrainTypeNoReservationDto.RER.toString(), dp, at, stopPoints);
-				target = client.target("http://localhost:8080/infoCentre/Train");
+		TrainEntityDto train = new TrainEntityDto("TER_MEHDI",location,0,false,TrainTypeNoReservationDto.RER.toString(), dp, at, stopPoints);
+		target = client.target("http://localhost:8080/infoCentre/Train");
 					//TrainEntityDto trainEntityDto = target.request().get().readEntity(TrainEntityDto.class);
 					//System.out.println(trainEntityDto);
-				target.request().post(Entity.entity(train , MediaType.APPLICATION_JSON));;
-		
+		target.request().post(Entity.entity(train , MediaType.APPLICATION_XML));
+		System.out.println("departure Date ="+train.getDeparture().getDateTime());
+		System.out.println("Arrival Date ="+train.getArrivalTerminus().getDateTime());
+		for(ArrivalStopPointEntityDto stp : train.getStopPoints())
+			System.out.println("stop point date ="+stp.getDateTime());
 	}
 
 }

@@ -1,5 +1,6 @@
 package fr.pantheonsorbonne.ufr27.miage.jpa;
 
+
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -8,10 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalStopPointEntityDto;
+
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalTerminusEntityDto;
 
 
@@ -43,6 +42,7 @@ public class ArrivalTerminus {
 			this.id = arrivalTerminusEntityDto.getId();
 		}
 		
+		
 		public ArrivalTerminusEntityDto getDto()
 		{
 			return new ArrivalTerminusEntityDto(this.getId(), this.getRank(), this.getDateTime(), station.getDto());
@@ -54,7 +54,6 @@ public class ArrivalTerminus {
 		
 		
 		public int compareTo(ArrivalTerminus arrivale) {
-			// TODO Auto-generated method stub
 			return this.rank.compareTo(arrivale.getRank());
 		}
 		public Long getId() {
@@ -74,7 +73,7 @@ public class ArrivalTerminus {
 		@Override
 		public String toString() {
 			// TODO Auto-generated method stub
-			return 	"Arrival : [ rank "+this.getRank()+" , id = "+this.getId()+" , TrainStationName = "+this.getStation().getName() +" , dateTime = "+this.getDateTime()+" ];\n";
+			return 	"Arrival : [  id = "+this.getId()+" , rank "+this.getRank()+" , TrainStationName = "+this.getStation().getName() +" , dateTime = "+this.getDateTime()+" ];\n";
 
 		}
 		

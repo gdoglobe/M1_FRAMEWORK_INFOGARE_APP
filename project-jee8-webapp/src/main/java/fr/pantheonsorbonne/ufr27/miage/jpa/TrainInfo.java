@@ -11,7 +11,7 @@ public class TrainInfo {
 	}
 
 	public void setDeparture(String departure) {
-		this.departure = departure;
+		this.departure = departure; 
 	}
 
 	public String getArrival() {

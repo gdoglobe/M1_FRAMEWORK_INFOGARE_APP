@@ -1,5 +1,6 @@
 package fr.pantheonsorbonne.ufr27.miage.jpa;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalStopPointEntityDto;
 
 @Entity
-public class ArrivalStopPoint{
+public class ArrivalStopPoint {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,6 +39,11 @@ public class ArrivalStopPoint{
 		this.dateTime = arrivalStopPointEntityDto.getDateTime();
 		this.station = new Station(arrivalStopPointEntityDto.getStation());
 		this.id = arrivalStopPointEntityDto.getId();
+	}
+	public ArrivalStopPoint(int rank, Date dateTime, Station station) {
+		this.rank = rank;
+		this.dateTime = dateTime;
+		this.station = station;
 	}
 	public ArrivalStopPointEntityDto getDto()
 	{
@@ -72,7 +78,7 @@ public class ArrivalStopPoint{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return 	"Arrival : [ rank "+this.getRank()+" , id = "+this.getId()+" , TrainStationName = "+this.getStation().getName() +" , dateTime = "+this.getDateTime()+" ];\n";
+		return 	"Arrival : [  id = "+this.getId()+" , rank "+this.getRank()+" , TrainStationName = "+this.getStation().getName() +" , dateTime = "+this.getDateTime()+" ];\n";
 
 	}
 	

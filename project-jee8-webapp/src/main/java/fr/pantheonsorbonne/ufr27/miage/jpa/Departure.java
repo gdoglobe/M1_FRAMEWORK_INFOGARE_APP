@@ -1,5 +1,6 @@
 package fr.pantheonsorbonne.ufr27.miage.jpa;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,8 @@ import fr.pantheonsorbonne.ufr27.miage.model.jaxb.DepartureEntityDto;
 
 
 @Entity
-public class Departure {
+public class Departure{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -40,6 +42,11 @@ public class Departure {
 		this.station = new Station(departureEntityDto.getStation());
 		this.id = departureEntityDto.getId();
 	}
+	public Departure(Date dateTime,Station station) {
+		this.dateTime = dateTime;
+		this.station = station;
+	}
+
 	public DepartureEntityDto getDto()
 	{
 		return new DepartureEntityDto(this.getId(), this.getDateTime(), station.getDto());

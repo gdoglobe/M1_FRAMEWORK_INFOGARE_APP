@@ -119,16 +119,7 @@ public class Main {
 		BrokerUtils.startBroker();
 
 		PersistenceConf pc = new PersistenceConf();
-		//pc.getEM();
 		
-		
-		/**
-		 * 
-		 * TEST EM
-		 */
-		
-//		EntityManager em = pc.getEM();
-//		em.getTransaction().begin();		
 				
 		List<ArrivalStopPoint> stopPoints = new ArrayList<ArrivalStopPoint>();
 		Location location = new Location("1111111", "11111111");
@@ -148,17 +139,18 @@ public class Main {
 		ArrivalTerminus at = new ArrivalTerminus(Long.valueOf(1), 3, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), bordeaux);
 		infoCentre.addTrain(new TrainNoReservation("TER",TrainTypeNoReservation.RER, dp, at,location, stopPoints));
 
+		
 		dp = new Departure(Long.valueOf(2), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), paris);
-		at = new ArrivalTerminus(Long.valueOf(2), 4, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), bordeaux);
+		at = new ArrivalTerminus(Long.valueOf(2), 3, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), bordeaux);
 
 
 		infoCentre.addTrain(new TrainReservation("TGV1",TrainTypeReservation.TVG, dp, at, location, stopPoints));
 		dp = new Departure(Long.valueOf(3), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), paris);
-		at = new ArrivalTerminus(Long.valueOf(3), 5, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), bordeaux);
+		at = new ArrivalTerminus(Long.valueOf(3), 3, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), bordeaux);
 
 		
 		
-		InfoCentreDao ifcDao = new InfoCentreDao();//new InfoCentreDao(pc.getEM());
+		InfoCentreDao ifcDao = new InfoCentreDao();
 		ifcDao.save(infoCentre);
 		
 		InfoCentre ifc = ifcDao.find(Long.valueOf(1));
@@ -195,14 +187,14 @@ public class Main {
 		System.out.println("After update =======================================================================\n\n");
 		ifc.addTrain(new TrainReservation("TGV2",TrainTypeReservation.TVG, dp, at, location, stopPoints));
 		dp = new Departure(Long.valueOf(4), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), bordeaux);
-		at = new ArrivalTerminus(Long.valueOf(4), 6, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), paris);
+		at = new ArrivalTerminus(Long.valueOf(4), 3, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), paris);
 
 		ifc.addTrain(new TrainReservation("TGV3",TrainTypeReservation.TVG, dp, at, location, stopPoints));
 		dp = new Departure(Long.valueOf(5), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), paris);
-		at = new ArrivalTerminus(Long.valueOf(5), 7, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), rouen);
+		at = new ArrivalTerminus(Long.valueOf(5), 3, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), rouen);
 
 		ifc.addTrain(new TrainReservation("TGV4",TrainTypeReservation.TVG, dp, at, location, stopPoints));
-		ifcDao.update(ifc);
+		ifcDao.update(ifc);////================================================
 		ifc = ifcDao.find(Long.valueOf(1));
 		
 		for(String station : stations)
@@ -222,13 +214,7 @@ public class Main {
 			}
 			
 		}
-//		em.persist(infoCentre);
-//		em.getTransaction().commit();
-		
-		/**
-		 * TEST EM END
-		 * 
-		 */
+
 		pc.launchH2WS();
 
 		System.out.println(String.format(

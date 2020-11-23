@@ -17,12 +17,12 @@ public class DepartureEntityDto {
 	@XmlElement
 	@XmlJavaTypeAdapter(DateAdapterDto.class)
 	private Date dateTime;
+	
 	@XmlElement
 	private StationEntityDto station;
 	
 	public DepartureEntityDto() {}
 	public DepartureEntityDto(Long id, Date dateTime, StationEntityDto station) {
-		super();
 		this.id = id;
 		this.dateTime = dateTime;
 		this.station = station;

@@ -24,9 +24,9 @@ public class ArrivalTerminusEntityDto {
 	public ArrivalTerminusEntityDto() {}
 	
 	public ArrivalTerminusEntityDto(Long id, Integer rank, Date dateTime, StationEntityDto station) {
-		super();
+	
 		this.id = id;
-		this.rank = rank;
+		this.setRank(rank);
 		this.dateTime = dateTime;
 		this.station = station;
 	}

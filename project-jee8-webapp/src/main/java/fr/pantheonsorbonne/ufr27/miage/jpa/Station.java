@@ -1,5 +1,7 @@
 package fr.pantheonsorbonne.ufr27.miage.jpa;
 
+import java.io.Serializable;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,9 @@ import javax.persistence.Id;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.StationEntityDto;
 
 @Entity
-public class Station {
+public class Station implements Serializable{
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 	private String name;
 	@Embedded
@@ -25,13 +27,18 @@ public class Station {
 	public Station(StationEntityDto stationEntityDto) {
 		this.id = stationEntityDto.getId();
 		this.name = stationEntityDto.getName();
-		this.location = new Location(stationEntityDto.getLocation());
+		this.location = new Location(stationEntityDto.getLocation()); 
 	}
 	
 	public Station() {
 		
 	}
 	
+	public Station( String name, Location location) {
+		this.name = name;
+		this.location = location;
+	}
+
 	public StationEntityDto getDto()
 	{
 		return new StationEntityDto(this.getId(), this.getName(), this.getLocation().getDto());

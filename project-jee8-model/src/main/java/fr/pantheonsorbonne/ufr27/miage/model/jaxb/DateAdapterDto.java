@@ -9,17 +9,20 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class DateAdapterDto extends XmlAdapter<String, Date> {
 
-	
-	private final DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	 @Override
-	 public Date unmarshal(String xml) throws Exception {
-	  return dateFormat.parse(xml);
-	 }
+    @Override
+    public String marshal(Date v) throws Exception {
+        synchronized (dateFormat) {
+            return dateFormat.format(v);
+        }
+    }
 
-	 @Override
-	 public String marshal(Date object) throws Exception {
-	  return dateFormat.format(object);
-	 }
+    @Override
+    public Date unmarshal(String v) throws Exception {
+        synchronized (dateFormat) {
+            return dateFormat.parse(v);
+        }
+    }
 
 }
