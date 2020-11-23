@@ -35,10 +35,10 @@ public class PersistenceConf {
 
 	}
 
-	private final EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("default");
-
+	private final static EntityManagerFactory factory = javax.persistence.Persistence.createEntityManagerFactory("default");
+	public static EntityManager entityManager = getEM();
 	@Produces
-	public EntityManager getEM() {
+	public static EntityManager getEM() {
 		EntityManager em = factory.createEntityManager();
 		return em;
 	}

@@ -8,8 +8,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.MissingFormatArgumentException;
 
 import javax.persistence.Entity;
+
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalStopPointEntityDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainEntityDto;
 
 
 
@@ -27,14 +31,30 @@ public class TrainReservation extends TrainAbstract{
         this.stopPoints = new ArrayList<ArrivalStopPoint>();
 	}
 
-	private void newinstance (TrainReservation t)
-	{
-		this.id = t.getId();
-		this.departure = t.getDeparture();
-		this.arrivalTerminus = t.getArrival();
-		this.location = t.getLocation();
-		this.stopPoints = t.getStopPoints();
-	}
+	public TrainReservation (TrainEntityDto trainEntityDto)
+    {
+    	if(trainEntityDto.isReservation())
+    	{
+    		this.id = trainEntityDto.getId();
+    		this.trainType = trainEntityDto.getTrainType();
+    		super.reservation = trainEntityDto.isReservation();
+    		this.departure = new Departure(trainEntityDto.getDeparture());
+    		this.arrivalTerminus = new ArrivalTerminus(trainEntityDto.getArrivalTerminus());
+    		this.location = new Location(trainEntityDto.getLocation());
+    		this.stopPoints = new ArrayList<ArrivalStopPoint>();
+    		for(ArrivalStopPointEntityDto arrivalStopPointEntityDto : trainEntityDto.getStopPoints())
+    		{
+    			ArrivalStopPoint arrivalStopPoint = new ArrivalStopPoint(arrivalStopPointEntityDto);
+    			this.stopPoints.add(arrivalStopPoint);
+    		}
+        }
+    	else
+    	{
+    		throw new MissingFormatArgumentException("Reservation must be true");
+    	}
+        
+    }
+    
 
 	public TrainReservation(String id, TrainTypeReservation trainreservationtype, Departure departure, ArrivalTerminus arrivalTerminus,Location location, List<ArrivalStopPoint> stopPoints) {
 		this.id = id;

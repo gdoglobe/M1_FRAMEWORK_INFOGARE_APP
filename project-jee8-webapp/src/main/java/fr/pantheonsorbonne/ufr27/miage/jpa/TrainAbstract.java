@@ -19,6 +19,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalStopPointEntityDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainEntityDto;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class TrainAbstract {
@@ -54,13 +57,23 @@ public abstract class TrainAbstract {
 	}
 	public TrainAbstract(String id, ITrainType trainType, Departure departure, ArrivalTerminus arrivalTerminus,Location location, List<ArrivalStopPoint> stopPoints) {
 		this.id = id;
-
 		this.trainType = trainType.toString();
 		this.departure = departure;
 		this.arrivalTerminus = arrivalTerminus;
 		this.location = location;
 		this.stopPoints = stopPoints;
 	}
+	public  TrainEntityDto getDto()
+	{
+		List<ArrivalStopPointEntityDto> stopPointsEntityDto = new ArrayList<ArrivalStopPointEntityDto>();
+		for(ArrivalStopPoint arrivalStopPoint : this.getStopPoints())
+		{
+			ArrivalStopPointEntityDto arrivalStopPointEntityDto = arrivalStopPoint.getDto();
+			stopPointsEntityDto.add(arrivalStopPointEntityDto);
+		}
+		return new TrainEntityDto(this.getId(), this.getLocation().getDto(), this.getSpeedKM(), this.isReservation(), this.getTrainType(), this.getDeparture().getDto(), this.getArrival().getDto(), stopPointsEntityDto);
+	}
+	
 	public void addStopPoint(ArrivalStopPoint stopPoint)
 	{
 		this.stopPoints.add(stopPoint);

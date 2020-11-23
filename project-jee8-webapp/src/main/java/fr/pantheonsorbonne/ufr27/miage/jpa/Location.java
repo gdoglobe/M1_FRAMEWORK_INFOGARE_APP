@@ -3,6 +3,9 @@ package fr.pantheonsorbonne.ufr27.miage.jpa;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.LocationDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.StationEntityDto;
+
 @Embeddable
 public class Location {
 	
@@ -19,6 +22,16 @@ public class Location {
 	public Location(String logitude, String latitude) {
 		this.logitude = logitude;
 		this.latitude = latitude;
+	}
+	
+	public Location(LocationDto locationDto) {
+		this.logitude = locationDto.getLogitude();
+		this.latitude = locationDto.getLatitude();
+	}
+	
+	public LocationDto getDto()
+	{
+		return new LocationDto(this.getLogitude(), this.getLatitude());
 	}
 	public String getLogitude() {
 		return logitude;

@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import javax.ejb.EJB;
 import javax.inject.Singleton;
 import javax.jms.ConnectionFactory;
 import javax.jms.Queue;
@@ -25,6 +26,7 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 import fr.pantheonsorbonne.ufr27.miage.conf.EMFFactory;
 import fr.pantheonsorbonne.ufr27.miage.conf.EMFactory;
 import fr.pantheonsorbonne.ufr27.miage.conf.PersistenceConf;
+import fr.pantheonsorbonne.ufr27.miage.dao.InfoCentreDao;
 import fr.pantheonsorbonne.ufr27.miage.dao.InvoiceDAO;
 import fr.pantheonsorbonne.ufr27.miage.dao.PaymentDAO;
 import fr.pantheonsorbonne.ufr27.miage.exception.ExceptionMapper;
@@ -44,6 +46,7 @@ import fr.pantheonsorbonne.ufr27.miage.jpa.TrainNoReservation;
 import fr.pantheonsorbonne.ufr27.miage.jpa.TrainReservation;
 import fr.pantheonsorbonne.ufr27.miage.jpa.TrainTypeNoReservation;
 import fr.pantheonsorbonne.ufr27.miage.jpa.TrainTypeReservation;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainAbstractImplDto;
 import fr.pantheonsorbonne.ufr27.miage.service.GymService;
 import fr.pantheonsorbonne.ufr27.miage.service.InvoicingService;
 import fr.pantheonsorbonne.ufr27.miage.service.MailingService;
@@ -124,20 +127,20 @@ public class Main {
 		 * TEST EM
 		 */
 		
-		EntityManager em = pc.getEM();
-		em.getTransaction().begin();		
+//		EntityManager em = pc.getEM();
+//		em.getTransaction().begin();		
 				
 		List<ArrivalStopPoint> stopPoints = new ArrayList<ArrivalStopPoint>();
 		Location location = new Location("1111111", "11111111");
 		Station tours = new Station(Long.valueOf(1), "Tours", location);
-		Station limoge = new Station(Long.valueOf(2), "Limoge", location);
+		Station limoges = new Station(Long.valueOf(2), "Limoges", location);
 		Station rouen = new Station(Long.valueOf(3), "Rouen", location);
 		Station bordeaux = new Station(Long.valueOf(4), "Bordeaux", location);
 		Station paris = new Station(Long.valueOf(5), "Paris", location);
 		
 
 		stopPoints.add(new ArrivalStopPoint(Long.valueOf(0), 1, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), tours));
-		stopPoints.add(new ArrivalStopPoint(Long.valueOf(1), 2, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), limoge));
+		stopPoints.add(new ArrivalStopPoint(Long.valueOf(1), 2, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), limoges));
 		InfoCentre infoCentre = new InfoCentre();
 
 
@@ -153,20 +156,74 @@ public class Main {
 		dp = new Departure(Long.valueOf(3), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), paris);
 		at = new ArrivalTerminus(Long.valueOf(3), 5, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), bordeaux);
 
-		infoCentre.addTrain(new TrainReservation("TGV2",TrainTypeReservation.TVG, dp, at, location, stopPoints));
+		
+		
+		InfoCentreDao ifcDao = new InfoCentreDao();//new InfoCentreDao(pc.getEM());
+		ifcDao.save(infoCentre);
+		
+		InfoCentre ifc = ifcDao.find(Long.valueOf(1));
+		
+		List<String> stations = new ArrayList<String>();
+		stations.add("Tours");
+		stations.add("Limoge");
+		stations.add("Paris");
+		stations.add("Rouen");
+		stations.add("Bordeaux");
+		List<TrainAbstractImplDto> arrives = new ArrayList<TrainAbstractImplDto>();
+		List<TrainAbstractImplDto> departs = new ArrayList<TrainAbstractImplDto>();
+		
+		for(String station : stations)
+		{
+			arrives = ifc.getTrainsByArrivalStationName(station);
+			departs = ifc.getTrainsByDepartureStationName(station);
+			System.out.println(station);
+			for(TrainAbstractImplDto d : departs)
+			{
+				System.out.println("\t\tDéparts");
+				System.out.println(d.toString());
+			}
+			for(TrainAbstractImplDto a : arrives)
+			{	
+				System.out.println("\t\tArrivés");
+				System.out.println(a.toString());
+			}
+			
+		}
+		
+		System.out.println("FindAll size :"+ifcDao.findAll().size());
+		
+		System.out.println("After update =======================================================================\n\n");
+		ifc.addTrain(new TrainReservation("TGV2",TrainTypeReservation.TVG, dp, at, location, stopPoints));
 		dp = new Departure(Long.valueOf(4), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), bordeaux);
 		at = new ArrivalTerminus(Long.valueOf(4), 6, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), paris);
 
-		infoCentre.addTrain(new TrainReservation("TGV3",TrainTypeReservation.TVG, dp, at, location, stopPoints));
+		ifc.addTrain(new TrainReservation("TGV3",TrainTypeReservation.TVG, dp, at, location, stopPoints));
 		dp = new Departure(Long.valueOf(5), new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), paris);
 		at = new ArrivalTerminus(Long.valueOf(5), 7, new GregorianCalendar(1980, Calendar.JANUARY, 15, 18, 30).getTime(), rouen);
 
-		infoCentre.addTrain(new TrainReservation("TGV4",TrainTypeReservation.TVG, dp, at, location, stopPoints));
+		ifc.addTrain(new TrainReservation("TGV4",TrainTypeReservation.TVG, dp, at, location, stopPoints));
+		ifcDao.update(ifc);
+		ifc = ifcDao.find(Long.valueOf(1));
 		
-		
-		
-		em.persist(infoCentre);
-		em.getTransaction().commit();
+		for(String station : stations)
+		{
+			arrives = ifc.getTrainsByArrivalStationName(station);
+			departs = ifc.getTrainsByDepartureStationName(station);
+			System.out.println(station);
+			for(TrainAbstractImplDto d : departs)
+			{
+				System.out.println("\t\tDéparts");
+				System.out.println(d.toString());
+			}
+			for(TrainAbstractImplDto a : arrives)
+			{	
+				System.out.println("\t\tArrivés");
+				System.out.println(a.toString());
+			}
+			
+		}
+//		em.persist(infoCentre);
+//		em.getTransaction().commit();
 		
 		/**
 		 * TEST EM END

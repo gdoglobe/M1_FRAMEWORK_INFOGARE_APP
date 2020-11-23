@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.StationEntityDto;
+
 @Entity
 public class Station {
 	@Id
@@ -19,8 +21,20 @@ public class Station {
 		this.name = name;
 		this.location = location;
 	}
+	
+	public Station(StationEntityDto stationEntityDto) {
+		this.id = stationEntityDto.getId();
+		this.name = stationEntityDto.getName();
+		this.location = new Location(stationEntityDto.getLocation());
+	}
+	
 	public Station() {
 		
+	}
+	
+	public StationEntityDto getDto()
+	{
+		return new StationEntityDto(this.getId(), this.getName(), this.getLocation().getDto());
 	}
 	public Long getId() {
 		return id;

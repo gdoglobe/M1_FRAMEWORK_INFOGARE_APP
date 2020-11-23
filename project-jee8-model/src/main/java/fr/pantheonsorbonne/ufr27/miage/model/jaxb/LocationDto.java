@@ -14,12 +14,12 @@ public class LocationDto {
 	private String logitude;
 	@XmlElement
 	private String latitude;
-	private String adress;
+	
 	
 	public LocationDto() {
 		this.logitude = "";
 		this.latitude = "";
-		this.adress = "";
+	
 	}
 	public LocationDto(String logitude, String latitude) {
 		this.logitude = logitude;
@@ -38,12 +38,7 @@ public class LocationDto {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	public String getAdress() {
-		return adress;
-	}
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
+	
 	public void setCoordinates(String logitude, String latitude) {
 		this.logitude = logitude;
 		this.latitude = latitude;

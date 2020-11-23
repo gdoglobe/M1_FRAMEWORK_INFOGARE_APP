@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalStopPointEntityDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalTerminusEntityDto;
+
 
 
 @Entity
@@ -33,9 +36,17 @@ public class ArrivalTerminus {
 			this.station = station;
 			this.id = id;
 		}
+		public ArrivalTerminus(ArrivalTerminusEntityDto arrivalTerminusEntityDto) {
+			this.rank = arrivalTerminusEntityDto.getRank();
+			this.dateTime = arrivalTerminusEntityDto.getDateTime();
+			this.station = new Station(arrivalTerminusEntityDto.getStation());
+			this.id = arrivalTerminusEntityDto.getId();
+		}
 		
-		
-		
+		public ArrivalTerminusEntityDto getDto()
+		{
+			return new ArrivalTerminusEntityDto(this.getId(), this.getRank(), this.getDateTime(), station.getDto());
+		}
 		public void setRank(Integer rank) {
 			this.rank = rank;
 		}

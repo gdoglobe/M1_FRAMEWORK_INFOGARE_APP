@@ -16,6 +16,7 @@ import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalDto;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.DepartureDto;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.InfoCentreDto;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainAbstractImplDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainEntityDto;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainNoReservationDto;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainReservationDto;
 import fr.pantheonsorbonne.ufr27.miage.model.jaxb.TrainsDto;
@@ -111,6 +112,23 @@ public class InfoCentre {
 	}
 	
 	
+	
+	public TrainEntityDto getTrainEntityDtoById(String trainId) {
+		//
+		TrainEntityDto trainEntityDto = null;
+		for(TrainAbstract t : this.trains)
+		{
+			if(t.getId().equalsIgnoreCase(trainId))
+			{
+				trainEntityDto = t.getDto();
+				return trainEntityDto;
+			}
+				
+			}
+			
+		return trainEntityDto;
+	}
+	
 	public List<TrainAbstractImplDto> getTrainsByDepartureStationName(String stationName) {
 		List<TrainAbstractImplDto> trainsByDepartureStationName = new ArrayList<TrainAbstractImplDto>();
 		TrainAbstractImplDto trainAbstractImplDtoDeparture = null;
@@ -187,5 +205,18 @@ public class InfoCentre {
 	{
 		return 0;
 	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	 
 
 }

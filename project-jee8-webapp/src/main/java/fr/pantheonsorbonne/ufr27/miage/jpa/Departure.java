@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalTerminusEntityDto;
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.DepartureEntityDto;
+
 
 @Entity
 public class Departure {
@@ -30,6 +33,16 @@ public class Departure {
 		this.dateTime = dateTime;
 		this.station = station;
 		this.id = id;
+	}
+	
+	public Departure(DepartureEntityDto departureEntityDto) {
+		this.dateTime = departureEntityDto.getDateTime();
+		this.station = new Station(departureEntityDto.getStation());
+		this.id = departureEntityDto.getId();
+	}
+	public DepartureEntityDto getDto()
+	{
+		return new DepartureEntityDto(this.getId(), this.getDateTime(), station.getDto());
 	}
 	public Long getId() {
 		return id;

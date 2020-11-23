@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import fr.pantheonsorbonne.ufr27.miage.model.jaxb.ArrivalStopPointEntityDto;
 
 @Entity
 public class ArrivalStopPoint{
@@ -33,6 +33,16 @@ public class ArrivalStopPoint{
 		this.id = id;
 	}
 	
+	public ArrivalStopPoint(ArrivalStopPointEntityDto arrivalStopPointEntityDto) {
+		this.rank = arrivalStopPointEntityDto.getRank();
+		this.dateTime = arrivalStopPointEntityDto.getDateTime();
+		this.station = new Station(arrivalStopPointEntityDto.getStation());
+		this.id = arrivalStopPointEntityDto.getId();
+	}
+	public ArrivalStopPointEntityDto getDto()
+	{
+		return new ArrivalStopPointEntityDto(this.getId(), this.getRank(), this.getDateTime(), station.getDto());
+	}
 	
 	
 	public void setRank(Integer rank) {
