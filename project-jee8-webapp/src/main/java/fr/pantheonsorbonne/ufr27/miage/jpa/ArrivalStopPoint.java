@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class ArrivalStopPoint{
+public class ArrivalStopPoint implements Comparable<ArrivalStopPoint>{
 	
 	@Id
 	private Long id;
