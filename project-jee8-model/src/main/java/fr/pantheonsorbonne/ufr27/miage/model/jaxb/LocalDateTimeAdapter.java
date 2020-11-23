@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-public class LocalDateTimeAdapterDto extends XmlAdapter<String, LocalDateTime> {
+public class LocalDateTimeAdapter extends XmlAdapter<String, LocalDateTime> {
 
 	private DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 

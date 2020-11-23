@@ -62,7 +62,7 @@ public class TrainNoReservation extends TrainAbstract{
 	}
 
 	public List<ArrivalStopPoint> getStopPoints() {
-		Collections.sort(this.stopPoints);
+		Collections.sort( this.stopPoints);
 		return  this.stopPoints;
 	}
 	
